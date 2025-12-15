@@ -1,0 +1,12 @@
+
+#form_1{
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#signUp-div_1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

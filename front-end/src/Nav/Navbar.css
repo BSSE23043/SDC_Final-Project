@@ -1,0 +1,11 @@
+#navbar_id{
+    background: linear-gradient(90deg, #220862 100%);
+    box-shadow: 0 2px 12px rgba(25, 118, 210, 0.15);
+}
+#navbar-propType {
+    color: #fff;
+    -webkit-text-stroke: 1.2px black; /* black outline for supported browsers */
+    font-weight: 900;
+    font-size: 1.5rem;
+    text-shadow: 0 2px 8px #000, 0 0 2px #2f0080;
+}

@@ -1,0 +1,4 @@
+body {
+    background: radial-gradient(ellipse at center, #fff 0%, #eab0c4 100%);
+    min-height: 100vh;
+}
