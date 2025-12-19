@@ -19,11 +19,11 @@ async function signUpUser(req, res) {
       res.end();
       return;
     }
-    const query = `INSERT INTO users(name, password, account_type, email)
-    VALUES($1, $2, $3, $4)`;
+    const query = `INSERT INTO accounts(name, email, password, role, account_status)
+    VALUES($1, $2, $3, $4, $5)`;
 
     try{ //Try to add the user to database
-      await lmsClient.query(query, [username, password, accountType, email]);
+      await lmsClient.query(query, [username, email, password, accountType, "Active"]);
       console.log("User has been added to db!");
       res.write("success");
       res.end();
@@ -46,7 +46,7 @@ async function userAlreadyExists(targetEmail){// This function returns true if t
   const lmsClient = await connectToDatabase();
 
   try {
-    const query_get_Users = `SELECT * FROM users`;
+    const query_get_Users = `SELECT * FROM accounts`;
     const data = await lmsClient.query(query_get_Users);
     for(let i = 0; i < data.rows.length; i++){
       if (data.rows[i].email == targetEmail){

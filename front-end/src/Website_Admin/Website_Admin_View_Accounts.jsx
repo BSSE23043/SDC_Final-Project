@@ -2,8 +2,11 @@ import Navbar from "../Nav/Navbar";
 
 function Website_Admin_View_Accounts(){
 
+    let count = 0;
+
     function fetchAccountsFromDB(){ //This function will fetch the requests from the database, only those requests will be fetched which are marked as pending
     //..and then they will be displayed in the table
+        count ++;
 
         fetch("http://localhost:5000/accounts/fetchAccounts", {
             method: "GET",
@@ -11,6 +14,8 @@ function Website_Admin_View_Accounts(){
         .then((res)=> {return res.json()})
         .then((data)=> {
             for (let i= 0; i< data.length; i++){
+                console.log (data.length);
+
                 const tBody = document.getElementById("websiteAdmin-viewAccounts-tableBody");
 
                 const tR = document.createElement("tr");
@@ -104,6 +109,7 @@ function Website_Admin_View_Accounts(){
     }
 
     fetchAccountsFromDB(); //Fetch all the accounts inside the table
+    console.log (`count: ${count}`);
 
     return(
         <>

@@ -57,6 +57,9 @@ function SignIn(){
                 else if (res.status === "error") {
                     window.alert("Unexpected response from server.");
                 }
+                else if (res.status === "terminated"){
+                    window.alert("You can't login, your account is terminated!");
+                }
             });
     }
 

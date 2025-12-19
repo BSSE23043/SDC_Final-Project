@@ -1,7 +1,7 @@
 const connectoToDB = require("./setupDB.js");
 
 async function createTables(){
-    await createTable_Users();
+    // await createTable_Users(); //This table has been replaced by accounts
     // await createTable_assigned_labs();
     // await createTable_current_session();
     // await createTable_inventory();
