@@ -86,7 +86,7 @@ async function signInUser(req, res) {
     }
 
     const role = await getAccountRole(email);
-    // await initializeUserSession(req, role);
+    await initializeUserSession(req, role);
 
     return res.json({ status: "success", role });
   } catch (error) {

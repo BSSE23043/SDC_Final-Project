@@ -1,4 +1,5 @@
 import Navbar from "../Nav/Navbar";
+import Handle_User_Permission from "../Shared_Functions/Sessions_Functions";
 
 function Website_Admin_View_Accounts(){
 
@@ -113,6 +114,8 @@ function Website_Admin_View_Accounts(){
 
     return(
         <>
+            <Handle_User_Permission webpageRole={"website_admin"}>
+
             <Navbar pageType="View & Manage Accounts"/>
 
             <table className="table" id="websiteAdmin-viewAccounts-tableHead">
@@ -129,6 +132,8 @@ function Website_Admin_View_Accounts(){
                 <tbody id="websiteAdmin-viewAccounts-tableBody">
                 </tbody>
             </table>
+
+            </Handle_User_Permission>
 
         </>
     );

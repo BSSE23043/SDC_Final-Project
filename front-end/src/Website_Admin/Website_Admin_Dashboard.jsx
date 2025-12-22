@@ -1,6 +1,6 @@
 import Navbar from "../Nav/Navbar";
 import { useNavigate } from "react-router-dom";
-// import Handle_User_Permission from "../Shared_Functions/Sessions_Functions";
+import Handle_User_Permission from "../Shared_Functions/Sessions_Functions";
 import { useEffect } from "react";
 import { useState } from "react";
 
@@ -25,7 +25,7 @@ function Website_Admin_Dashboard(){
 
     return(
         <>
-            {/* <Handle_User_Permission webpageRole = "website_admin"> */}
+            <Handle_User_Permission webpageRole = "website_admin">
 
                 <Navbar pageType="Website Admin Dashboard"/>
                 <div>
@@ -55,7 +55,7 @@ function Website_Admin_Dashboard(){
                     </div>
                 </div>
 
-            {/* </Handle_User_Permission> */}
+            </Handle_User_Permission>
             
         </>
     );

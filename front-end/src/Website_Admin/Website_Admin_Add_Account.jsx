@@ -1,5 +1,6 @@
 import Navbar from "../Nav/Navbar";
 import { useState } from "react";
+import Handle_User_Permission from "../Shared_Functions/Sessions_Functions";
 
 function Website_Admin_Add_Account(){
 
@@ -36,6 +37,8 @@ function Website_Admin_Add_Account(){
 
     return(
         <>
+        <Handle_User_Permission webpageRole={"website_admin"}>
+
         <Navbar pageType="Add Account"/>
 
         <div id="addInventory-div_1" style={{
@@ -92,6 +95,8 @@ function Website_Admin_Add_Account(){
         }}>Submit</button>
         </form>
         </div>
+
+        </Handle_User_Permission>
         
         </>
     );
