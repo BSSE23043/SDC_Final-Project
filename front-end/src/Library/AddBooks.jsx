@@ -1,0 +1,99 @@
+import { useState } from "react";
+import Navbar from "../Nav/Navbar";
+
+function AddBook(){
+
+    const [bookName, setBookName] = useState("");
+    const [author, setAuthor] = useState("");
+    const [isbn, setIsbn] = useState("");
+    const [quantity, setQuantity] = useState("");
+
+    function submitForm(e){
+        e.preventDefault();
+
+        fetch("http://localhost:5000/book/addBook", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                bookName: bookName,
+                author: author,
+                isbn: isbn,
+                quantity: quantity
+            }),
+        })
+        .then((response)=> response.text())
+        .then((textResponse)=>{
+            if (textResponse === "missing_entries"){
+                alert("Please fill all entries!");
+            }
+            else if (textResponse === "new_book_added"){
+                alert("New book added successfully!");
+            }
+            else if (textResponse === "book_updated"){
+                alert("Book already exists! Quantity updated!");
+            }
+            else{
+                alert("Unexpected error occurred!");
+            }
+            window.location.reload();
+        });
+    }
+
+    return(
+        <>
+        <Navbar pageType="Add Library Book"/>
+
+        <div style={{
+            minHeight: "100vh",
+            background: "#f5f6fa",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center"
+        }}>
+        <form onSubmit={submitForm} style={{
+            background: "#fff",
+            padding: "2rem",
+            borderRadius: "18px",
+            width: "370px",
+            border: "2px solid #002147"
+        }}>
+            <h2 style={{textAlign:"center"}}>Add Book</h2>
+
+            <input
+                type="text"
+                placeholder="Book Name"
+                onChange={(e)=>setBookName(e.target.value)}
+                className="form-control mb-3"
+            />
+
+            <input
+                type="text"
+                placeholder="Author Name"
+                onChange={(e)=>setAuthor(e.target.value)}
+                className="form-control mb-3"
+            />
+
+            <input
+                type="text"
+                placeholder="ISBN"
+                onChange={(e)=>setIsbn(e.target.value)}
+                className="form-control mb-3"
+            />
+
+            <input
+                type="number"
+                placeholder="Quantity"
+                onChange={(e)=>setQuantity(e.target.value)}
+                className="form-control mb-3"
+            />
+
+            <button type="submit" className="btn btn-warning w-100">
+                Submit
+            </button>
+        </form>
+        </div>
+        </>
+    );
+}
+
+export default AddBook;

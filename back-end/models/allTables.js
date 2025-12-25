@@ -14,9 +14,35 @@ async function createTables(){
     // await createTable_Assigned_Courses();
     await createTable_accounts();
     // await createTable_faculties();
-
+    await createTable_Library();
     await insertDummyData();
 }
+async function createTable_Library(){
+    const client = await connectoToDB();
+    if (!client) {
+        return;
+    }
+
+    const query = `
+        CREATE TABLE IF NOT EXISTS library (
+            id SERIAL PRIMARY KEY,
+            book_name VARCHAR(150),
+            author VARCHAR(150),
+            isbn VARCHAR(50),
+            quantity INT
+        )
+    `;
+
+    client.query(query, (err, data) => {
+        if (err) {
+            console.log("Library table cannot be created!");
+            console.log(err.message);
+        } else {
+            console.log("Library table created!");
+        }
+    });
+}
+
 
 async function createTable_Assigned_Courses(){
     const client = await connectoToDB();
