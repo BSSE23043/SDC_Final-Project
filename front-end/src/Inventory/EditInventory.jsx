@@ -14,41 +14,41 @@ function EditInventory(){
 
         <div id="editInventory-div_1" style={{
             minHeight: "100vh",
-            background: "#f5f6fa",
+            background: "var(--bg-1)",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center"
         }}>
         <div style={{
-            background: "#fff",
+            background: "var(--card-bg)",
             borderRadius: "18px",
-            boxShadow: "0 8px 32px 0 rgba(0,33,71,0.10), 0 2px 8px 0 rgba(0,33,71,0.08)",
+            boxShadow: "0 8px 32px 0 rgba(26,26,26,0.10), 0 2px 8px 0 rgba(26,26,26,0.06)",
             padding: "2rem 2.2rem",
             maxWidth: "370px",
             width: "100%",
-            border: "2px solid #002147",
-            color: "#002147"
+            border: "1px solid var(--primary)",
+            color: "var(--text)"
         }}>
             <div className="dropdown mb-4">
-                <button className="btn btn-secondary dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false" style={{background: 'linear-gradient(90deg, #ffd700 0%, #ffb400 100%)', color: '#002147', fontWeight: 700, border: 'none', borderRadius: '12px'}}>
+                <button className="btn btn-secondary dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false" style={{background: 'linear-gradient(90deg, var(--accent) 0%, var(--accent-700) 100%)', color: 'var(--text)', fontWeight: 700, border: 'none', borderRadius: '12px', boxShadow: '0 8px 20px rgba(0,36,107,0.06)'}}>
                     Current Inventory
                 </button>
                 <ul id="editInventory-dropDown" className="dropdown-menu w-100">
                 </ul>
             </div>
             <div className="mb-3">
-                <label htmlFor="editInventory-input_itemName" className="form-label" style={{fontWeight: 500, color: '#002147'}}>Item Name</label>
-                <input onChange={(e)=>{setName(e.target.value)}} id="editInventory-input_itemName" type="text" className="form-control" placeholder="Item Name" style={{borderRadius: "8px", background: '#fff', color: '#002147', border: '1px solid #0056b3'}} />
+                <label htmlFor="editInventory-input_itemName" className="form-label" style={{fontWeight: 500, color: 'var(--text)'}}>Item Name</label>
+                <input onChange={(e)=>{setName(e.target.value)}} id="editInventory-input_itemName" type="text" className="form-control" placeholder="Item Name" style={{borderRadius: "8px", background: 'var(--card-bg)', color: 'var(--text)', border: '1px solid rgba(0,36,107,0.12)'}} />
             </div>
             <div className="mb-3">
-                <label htmlFor="editInventory-input_quantity" className="form-label" style={{fontWeight: 500, color: '#002147'}}>Quantity</label>
-                <input onChange={(e)=>{setQuantity(e.target.value)}} id="editInventory-input_quantity" type="text" className="form-control" placeholder="Quantity" style={{borderRadius: "8px", background: '#fff', color: '#002147', border: '1px solid #0056b3'}} />
+                <label htmlFor="editInventory-input_quantity" className="form-label" style={{fontWeight: 500, color: 'var(--text)'}}>Quantity</label>
+                <input onChange={(e)=>{setQuantity(e.target.value)}} id="editInventory-input_quantity" type="text" className="form-control" placeholder="Quantity" style={{borderRadius: "8px", background: 'var(--card-bg)', color: 'var(--text)', border: '1px solid rgba(0,36,107,0.12)'}} />
                 {/* Store the item ID but hide it from the user */}
                 <input onChange={(e)=>{setID(e.target.value)}} id="editInventory-itemID" type="hidden" />
             </div>
-            <button onClick={()=>{submitEditedInventory(name, quantity, id);}} type="button" className="btn w-100" style={{borderRadius: "25px", fontWeight: 700, fontSize: "1.1rem", background: 'linear-gradient(90deg, #ffd700 0%, #ffb400 100%)', color: '#002147', border: 'none', marginBottom: '0.5rem'}}>Save Changes</button>
-            <button onClick={()=>{deleteInventoryItem(id);}} type="button" className="btn w-100" style={{borderRadius: "25px", fontWeight: 700, fontSize: "1.1rem", background: '#fff', color: '#002147', border: '2px solid #002147'}}>Delete This Item</button>
+            <button onClick={()=>{submitEditedInventory(name, quantity, id);}} type="button" className="btn w-100" style={{borderRadius: "25px", fontWeight: 700, fontSize: "1.1rem", background: 'linear-gradient(90deg, var(--section-bg) 0%, var(--bg-1) 100%)', color: 'var(--text)', border: 'none', marginBottom: '0.5rem', boxShadow: '0 8px 20px rgba(26,26,26,0.08)', padding: '0.7rem 0'}}>Save Changes</button>
+            <button onClick={()=>{deleteInventoryItem(id);}} type="button" className="btn w-100" style={{borderRadius: "25px", fontWeight: 700, fontSize: "1.1rem", background: 'var(--card-bg)', color: 'var(--text)', border: '1px solid var(--primary)'}}>Delete This Item</button>
         </div>
         </div>
     

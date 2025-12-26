@@ -16,17 +16,17 @@ function EditBook(){
 
         <div style={{
             minHeight: "100vh",
-            background: "#f5f6fa",
+            background: "var(--bg-1)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center"
         }}>
         <div style={{
-            background: "#fff",
+            background: "var(--card-bg)",
             padding: "2rem",
             borderRadius: "18px",
             width: "380px",
-            border: "2px solid #002147"
+            border: "1px solid var(--primary)"
         }}>
 
             {/* Dropdown */}

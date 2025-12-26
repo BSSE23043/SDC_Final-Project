@@ -45,10 +45,11 @@ function SignUp() {
 
     return (
         <>
-            <Navbar pageType="Sign Up" style={{background: '#bfa14a'}}/>
+            <Navbar pageType="Sign Up" />
             <div style={{
                 minHeight: "100vh",
-                background: "radial-gradient(ellipse at center, #a83232 0%, #2b0909 60%, #000 100%)",
+                background: "linear-gradient(rgba(244,241,234,0.78), rgba(244,241,234,0.78)), url('/images/library-signup.svg') center/cover no-repeat",
+                backgroundAttachment: "fixed",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
@@ -57,15 +58,15 @@ function SignUp() {
                 <div style={{
                     marginTop: "1rem",
                     marginBottom: "1rem",
-                    background: "linear-gradient(135deg, #231c1cff 30%, #cd0b0bff 70%)",
+                    background: "var(--card-bg)",
                     borderRadius: "20px",
-                    boxShadow: "0 8px 32px 0 rgba(80,0,0,0.35), 0 2px 8px 0 rgba(128,0,0,0.25)",
-                    padding: "0.2rem 0.7rem",
+                    boxShadow: "0 8px 32px rgba(0,0,0,0.6)",
+                    padding: "1rem 1rem",
                     minHeight: "180px",
                     maxWidth: "420px",
                     width: "100%",
-                    border: "2px solid #800000",
-                    color: "#fff"
+                    border: "1px solid rgba(255,255,255,0.04)",
+                    color: "var(--text)"
                 }}>
                     <form onSubmit={submitForm} id="form_1">
                         <h1 style={{
@@ -78,38 +79,30 @@ function SignUp() {
                         }}>Sign Up</h1>
 
                         <div className="mb-3">
-                            <label htmlFor="signup-name" className="form-label" style={{fontWeight: 500, color: '#fff'}}>Name</label>
-                            <input onChange={(e) => setUserName(e.target.value)} type="text" className="form-control" id="signup-name" style={{borderRadius: "8px", background: '#232526', color: '#fff', border: '1px solid #800000'}} aria-describedby="emailHelp" />
+                            <label htmlFor="signup-name" className="form-label" style={{fontWeight: 500, color: 'var(--primary)'}}>Name</label>
+                            <input onChange={(e) => setUserName(e.target.value)} type="text" className="form-control" id="signup-name" style={{borderRadius: "8px", background: 'transparent', color: 'var(--text)', border: '1px solid rgba(255,255,255,0.06)'}} aria-describedby="emailHelp" />
                         </div>
 
                         <div className="mb-3">
-                            <label htmlFor="signup-email" className="form-label" style={{fontWeight: 500, color: '#fff'}}>Email address</label>
-                            <input onChange={(e) => setUserEmail(e.target.value)} type="email" className="form-control" id="signup-email" style={{borderRadius: "8px", background: '#232526', color: '#fff', border: '1px solid #800000'}} aria-describedby="emailHelp" />
-                            <div id="emailHelp" className="form-text" style={{color: '#fff'}}>We'll never share your email with anyone else.</div>
+                            <label htmlFor="signup-email" className="form-label" style={{fontWeight: 500, color: 'var(--primary)'}}>Email address</label>
+                            <input onChange={(e) => setUserEmail(e.target.value)} type="email" className="form-control" id="signup-email" style={{borderRadius: "8px", background: 'transparent', color: 'var(--text)', border: '1px solid rgba(255,255,255,0.06)'}} aria-describedby="emailHelp" />
+                            <div id="emailHelp" className="form-text" style={{color: 'var(--muted)'}}>We'll never share your email with anyone else.</div>
                         </div>
 
                         <div className="mb-3">
-                            <label htmlFor="signup-password" className="form-label" style={{fontWeight: 500, color: '#fff'}}>Password</label>
-                            <input onChange={(e) => setUserPass(e.target.value)} type="password" className="form-control" id="signup-password" style={{borderRadius: "8px", background: '#232526', color: '#fff', border: '1px solid #800000'}} />
+                            <label htmlFor="signup-password" className="form-label" style={{fontWeight: 500, color: 'var(--primary)'}}>Password</label>
+                            <input onChange={(e) => setUserPass(e.target.value)} type="password" className="form-control" id="signup-password" style={{borderRadius: "8px", background: 'transparent', color: 'var(--text)', border: '1px solid rgba(255,255,255,0.06)'}} />
                         </div>
 
                         <div className="mb-3">
-                            <label htmlFor="signup-accountType" className="form-label" style={{fontWeight: 500, color: '#fff'}}>Account Type</label>
-                            <select onChange={(e) => setAccountType(e.target.value)} className="form-select" id="signup-accountType" style={{borderRadius: "8px", background: '#232526', color: '#fff', border: '1px solid #800000'}} aria-label="Default select example">
+                            <label htmlFor="signup-accountType" className="form-label" style={{fontWeight: 500, color: 'var(--primary)'}}>Account Type</label>
+                            <select onChange={(e) => setAccountType(e.target.value)} className="form-select" id="signup-accountType" style={{borderRadius: "8px", background: 'transparent', color: 'var(--text)', border: '1px solid rgba(255,255,255,0.06)'}} aria-label="Default select example">
                                 <option value="not_selected">Account Type</option>
                                 <option value="customer">Customer</option>
                             </select>
                         </div>
 
-                        <button type="submit" className="btn w-100" style={{
-                            borderRadius: "25px",
-                            fontWeight: 700,
-                            fontSize: "1.1rem",
-                            background: "linear-gradient(90deg, #232526  0%)",
-                            color: "#fff",
-                            border: "none",
-                            boxShadow: "0 2px 8px 0 rgba(191, 161, 74, 0.10)"
-                        }}>Sign Up</button>
+                        <button type="submit" className="btn w-100 pretty-btn">Sign Up</button>
                     </form>
                 </div>
             </div>

@@ -33,7 +33,7 @@ function Library_Dashboard(){
                 <div className="card-body text-center">
                     <h5 style={titleStyle}>Add Book</h5>
                     <p>Add new books to library</p>
-                    <button className="btn w-100" style={btnStyle}>Add</button>
+                    <button className="btn w-100 pretty-btn">Add</button>
                 </div>
             </div>
 
@@ -43,7 +43,7 @@ function Library_Dashboard(){
                 <div className="card-body text-center">
                     <h5 style={titleStyle}>Edit Books</h5>
                     <p>Edit or delete existing books</p>
-                    <button className="btn w-100" style={btnStyle}>Edit</button>
+                    <button className="btn w-100 pretty-btn">Edit</button>
                 </div>
             </div>
 
@@ -54,10 +54,10 @@ function Library_Dashboard(){
 
 const cardStyle = {
     width: "18rem",
-    background: "#fff",
+    background: "var(--card-bg)",
     borderRadius: "1rem",
-    boxShadow: "0 4px 24px rgba(0,33,71,0.10)",
-    border: "1.5px solid #002147",
+    boxShadow: "0 4px 24px rgba(26,26,26,0.10)",
+    border: "1px solid rgba(26,26,26,0.08)",
     cursor: "pointer"
 };
 
@@ -68,15 +68,9 @@ const imgStyle = {
 
 const titleStyle = {
     fontWeight: 700,
-    color: "#002147"
+    color: "var(--primary)"
 };
 
-const btnStyle = {
-    background: "linear-gradient(90deg, #ffd700 0%, #ffb400 100%)",
-    color: "#002147",
-    borderRadius: "25px",
-    fontWeight: 700,
-    border: "none"
-};
+// Buttons are styled via the global .pretty-btn class in App.css
 
 export default Library_Dashboard;

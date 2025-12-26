@@ -68,23 +68,24 @@ function SignIn(){
             <Navbar pageType="Sign In" />
 
             <div style={{
-                minHeight: "100vh",
-                background: "linear-gradient(135deg, #fff3e0 0%)",
+                minHeight: "115vh",
+                background: "linear-gradient(rgba(244,241,234,0.78), rgba(244,241,234,0.78)), url('/images/library-signin.svg') center/cover no-repeat",
+                backgroundAttachment: "fixed",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "flex-start"
             }}>
                 <div style={{
-                    marginTop: "3rem",
-                    backgroundColor: "white",
+                    marginTop: "4rem",
+                    backgroundColor: "var(--card-bg)",
                     borderRadius: "1.5rem",
-                    boxShadow: "0 8px 32px rgba(255, 152, 0, 0.18), 0 2px 8px rgba(255, 87, 34, 0.10)",
-                    padding: "2.5rem 2rem",
-                    maxWidth: "420px",
+                    boxShadow: "0 8px 32px rgba(26,26,26,0.10), 0 2px 8px rgba(26,26,26,0.06)",
+                    padding: "3rem 2.5rem",
+                    maxWidth: "480px",
                     width: "100%",
-                    border: "2.5px solid #05105cff",
-                    color: "#0d0651ff",
+                    border: "1px solid rgba(26,26,26,0.08)",
+                    color: "var(--text)",
                     fontWeight: 700,
                     backdropFilter: "blur(2px)",
                     transition: "box-shadow 0.3s, border 0.3s"
@@ -93,34 +94,26 @@ function SignIn(){
                         <h1 style={{
                             textAlign: "center",
                             marginBottom: "2rem",
-                            color: "#05105cff",
+                            color: "var(--primary)",
                             fontWeight: 800,
                             letterSpacing: "1px",
                             fontFamily: "'Segoe UI', 'Roboto', 'Arial', sans-serif"
                         }}>Sign In</h1>
 
                         <div className="mb-3">
-                            <label htmlFor="signin-email" className="form-label" style={{ fontWeight: 500, color: '#05105cff' }}>Email address</label>
-                            <input onChange={(e) => { setEmail(e.target.value) }} type="email" className="form-control" id="signin-email" style={{ borderRadius: "8px", backgroundColor: ' #eb8f06ff', color: '#fff', border: '1px solid #800000' }} aria-describedby="emailHelp" />
-                            <div id="emailHelp" className="form-text" style={{ color: '#05105cff' }}>We'll never share your email with anyone else.</div>
+                            <label htmlFor="signin-email" className="form-label" style={{ fontWeight: 500, color: 'var(--primary)' }}>Email address</label>
+                            <input onChange={(e) => { setEmail(e.target.value) }} type="email" className="form-control" id="signin-email" style={{ borderRadius: "8px", background: 'var(--card-bg)', color: 'var(--text)', border: '1px solid rgba(26,26,26,0.08)' }} aria-describedby="emailHelp" />
+                            <div id="emailHelp" className="form-text" style={{ color: 'var(--muted)' }}>We'll never share your email with anyone else.</div>
                         </div>
 
                         <div className="mb-3">
-                            <label htmlFor="signin-password" className="form-label" style={{ fontWeight: 500, color: '#05105cff' }}>Password</label>
-                            <input onChange={(e) => { setPasseword(e.target.value) }} type="password" className="form-control" id="signin-password" style={{ borderRadius: "8px", backgroundColor: '#eb8f06ff', color: '#fff', border: '1px solid #800000' }} />
+                            <label htmlFor="signin-password" className="form-label" style={{ fontWeight: 500, color: 'var(--primary)' }}>Password</label>
+                            <input onChange={(e) => { setPasseword(e.target.value) }} type="password" className="form-control" id="signin-password" style={{ borderRadius: "8px", background: 'var(--card-bg)', color: 'var(--text)', border: '1px solid rgba(26,26,26,0.08)' }} />
                         </div>
 
                        
                              
-                        <button type="submit" className="btn w-100" style={{
-                            borderRadius: "25px",
-                            fontWeight: 700,
-                            fontSize: "1.1rem",
-                            backgroundColor: " #eb8f06ff",
-                            color: "#05105cff",
-                            border: "2.5px solid #b25625ff",
-                            boxShadow: "0 2px 8px 0 rgba(255, 152, 0, 0.10)"
-                        }}>Sign In</button>
+                        <button type="submit" className="btn w-100 pretty-btn">Sign In</button>
                     </form>
                 </div>
             </div>

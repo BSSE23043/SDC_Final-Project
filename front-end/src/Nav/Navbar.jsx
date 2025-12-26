@@ -14,7 +14,7 @@ function Navbar(props){
             <div className="container-fluid">
                 <b id="navbar-propType" className="navbar-brand">{props.pageType}</b>
                 {/* props.pageType means the type of page user is currently inside, like it can be homepage, dashboard, etc */}
-                <button className="btn btn-outline-light" onClick={goBack}>Go Back</button>
+                <button className="btn go-back-btn" onClick={goBack}>Go Back</button>
             </div>
         </nav>
     );
