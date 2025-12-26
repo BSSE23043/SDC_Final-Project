@@ -10,7 +10,10 @@ const {
 } = require("../controllers/libraryController.js");
 
 // ADD
-router.post("/addBook", addBook);
+router.post("/addBook", async(req, res)=>{
+  console.log ("connection has been made to route!");
+  await addBook(req, res);
+});
 
 // EDIT
 router.get("/editBooks", editBooks);

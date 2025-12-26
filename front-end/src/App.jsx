@@ -10,6 +10,7 @@ import Inventory_Dashboard from './Inventory/Inventory_Dashboard';
 import AddBook from './Library/AddBooks.jsx';
 import EditBook from './Library/EditBooks.jsx';
 import Library_Dashboard from './Library/Library_Dashboard.jsx';
+import Customer_Dashboard from './Customer/Customer_Dashboard.jsx';
 
 function App() {
   return (
@@ -22,9 +23,10 @@ function App() {
         <Route path= "/website_admin_dashboard/viewAccounts" element = {<Website_Admin_View_Accounts />} />
         <Route path= "/website_admin_dashboard/addAccount" element = {<Website_Admin_Add_Account />} />
         <Route path= "/inventory_dashboard" element = {<Inventory_Dashboard />} />
-        <Route path= "/addBook" element = {<AddBook/>}/>
-        <Route path="/editBook" element = {<EditBook/>}/>
+        <Route path= "library/addBook" element = {<AddBook/>}/>
+        <Route path="library/editBook" element = {<EditBook/>}/>
         <Route path="library_Dashboard" element = {<Library_Dashboard/>}/>
+        <Route path="customer_dashboard" element = {<Customer_Dashboard/>}/>
         <></>
   
         </Routes>

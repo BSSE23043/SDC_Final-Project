@@ -3,6 +3,7 @@ const cors = require("cors");
 const auth = require('./routes/auth.js');
 const accounts = require('./routes/accounts.js');
 const createTables = require("./models/allTables.js");
+const book = require("./routes/book.js");
 
 const app = express();
 const PORT = 5000;
@@ -15,6 +16,7 @@ app.use(express.json());      // <-- parse JSON bodies
 app.use("/auth", auth);
 app.use("/session", require("./routes/session"));
 app.use("/accounts", accounts);
+app.use("/book", book);
 
 app.get('/', (req, res) => {
   res.send('Hello World from backend!');

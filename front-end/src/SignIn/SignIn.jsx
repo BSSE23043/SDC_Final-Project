@@ -11,7 +11,7 @@ function SignIn(){
     }
 
     function goToStaffDashboard() {
-        navigate("/staff_dashboard");
+        navigate("/library_Dashboard");
     }
 
     function goToWebsiteAdminDashboard(){

@@ -2,6 +2,7 @@ const connectToDB = require("../models/setupDB.js");
 
 // ================= ADD BOOK =================
 async function addBook(req, res){
+  console.log("connection has been made to controller!");
   const { bookName, author, isbn, quantity } = req.body;
 
   if (!bookName || !author || !isbn || !quantity){

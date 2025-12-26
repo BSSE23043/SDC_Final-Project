@@ -80,7 +80,7 @@ function Website_Admin_Add_Account(){
             <label htmlFor="add-inventory-quantity" className="form-label" style={{fontWeight: 500, color: '#002147'}}>Role</label>
             <select onChange={(e)=>{setAccountRole(e.target.value);}} className="form-select" aria-label="Default select example" style={{borderRadius: "8px", background: '#fff', color: '#002147', border: '1px solid #0056b3'}}>
                 <option selected value="">Choose Role</option>
-                <option value="desk_person">Desk Person</option>
+                <option value="staff">Staff</option>
             </select>
         </div>
         <button type="submit" className="inventory-go-btn w-100" style={{

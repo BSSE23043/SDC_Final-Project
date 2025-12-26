@@ -29,7 +29,7 @@ function Library_Dashboard(){
 
             {/* Add Book */}
             <div onClick={goToAddBook} className="card" style={cardStyle}>
-                <img src={addBookCard} className="card-img-top" style={imgStyle}/>
+                <img src={"#"} className="card-img-top" style={imgStyle}/>
                 <div className="card-body text-center">
                     <h5 style={titleStyle}>Add Book</h5>
                     <p>Add new books to library</p>
@@ -39,7 +39,7 @@ function Library_Dashboard(){
 
             {/* Edit Book */}
             <div onClick={goToEditBook} className="card" style={cardStyle}>
-                <img src={editBookCard} className="card-img-top" style={imgStyle}/>
+                <img src={"#"} className="card-img-top" style={imgStyle}/>
                 <div className="card-body text-center">
                     <h5 style={titleStyle}>Edit Books</h5>
                     <p>Edit or delete existing books</p>
