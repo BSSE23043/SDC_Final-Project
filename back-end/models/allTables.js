@@ -25,15 +25,16 @@ async function createTable_borrowed_books(){
     //borrow_completed tells if the book has been returned after being borrowed or not, its values can either be
     //..NO or NO
     //When a user requests to borrow a book, that borrow has to be accepted by staff, if staff has accepted the borrow
-    //..then borrow_approved_by_staff becomes YES, otherwise it remains PENDING by default, if staff rejects the borrow
-    //..then it becomes NO
+    //..then borrow_approved_by_staff becomes ACCEPTED, otherwise it remains PENDING by default, if staff rejects the borrow
+    //..then it becomes REJECTED
     try{
         const query = `CREATE TABLE IF NOT EXISTS borrowed_books (
-        book_isbn INT PRIMARY KEY,
-        borrow_date_time TIMESTAMPTZ,
+        book_isbn VARCHAR(50) PRIMARY KEY,
+        borrow_date DATE,
         customer_email VARCHAR(250),
         borrow_completed VARCHAR(3),
-        borrow_approved_by_staff VARCHAR(25)
+        borrow_approved_by_staff VARCHAR(25),
+        deadline_date DATE
         )`;
         await library_db.query(query);
         console.log(`Table: borrowed_books has been created!`);

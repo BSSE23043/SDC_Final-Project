@@ -36,16 +36,15 @@ async function borrowBook(req, res){
             return;
         }
         
-        //Extract the current date time at that point
-        const query_getTodaysDateTime = `SELECT current_timestamp`
-        const rawData = await library_db.query(query_getTodaysDateTime);
-        const todayDateTime = rawData.rows[0]["current_timestamp"];
+        //When the request is being made, we'll send null for borrow_date_time because that date and time will be
+        //..put when the staff has actually accepted the request to borrow the book, also, we'll send null for
+        //..deadline_date too, this will also be set when staff accepts the request
 
         //If everything is fine then run the query
-        const query = `INSERT INTO borrowed_books(book_isbn, borrow_date_time, customer_email, borrow_completed
-        ,borrow_approved_by_staff) 
-        VALUES($1, $2, $3, $4, $5)`;
-        await library_db.query(query, [bookISBN, todayDateTime, req.session.user.email, "NO", "PENDING"]);
+        const query = `INSERT INTO borrowed_books(book_isbn, borrow_date, customer_email, borrow_completed
+        ,borrow_approved_by_staff, deadline_date) 
+        VALUES($1, $2, $3, $4, $5, $6)`;
+        await library_db.query(query, [bookISBN, null, req.session.user.email, "NO", "PENDING", null]);
         res.write("success");
         res.end();
     }
@@ -85,6 +84,32 @@ async function hasBookAlreadyBeenRequested(book_isbn, customer_email){ //Check i
 
 //View Book Catalog Controller for Customer Ends Here//
 
-module.exports = {viewBookCatalog,
+//View Borrowed Books Controller for Customer Starts Here//
+
+async function viewBorrowedBooks(req, res){
+
+    try{
+        const library_db = await connectToDatabase();
+        const customer_email = req.session.user.email;
+
+        const query = `SELECT * 
+        FROM borrowed_books
+        JOIN library
+        ON borrowed_books.book_isbn = library.isbn
+        WHERE borrowed_books.customer_email = $1`;
+
+        const data = await library_db.query(query, [customer_email]);
+        res.json(data);
+    }
+    catch(error){
+        console.log(`customerController.js -> viewBorrowedBooks: ${error.message}`);
+    }
+}
+
+//View Borrowed Books Controller for Customer Ends Here//
+
+module.exports = {
+    viewBookCatalog,
     borrowBook,
+    viewBorrowedBooks,
 };

@@ -12,6 +12,7 @@ const {
 const {
   viewBookCatalog,
   borrowBook,
+  viewBorrowedBooks,
 } = require("../controllers/customerController.js");
 
 // ADD
@@ -39,5 +40,10 @@ router.get("/viewBookCatalog", async(req, res)=>{
 router.post("/borrowBook", async(req, res)=>{
   await borrowBook(req, res);
 });
+
+//View Borrowed books
+router.post("/viewBorrowedBooks", async(req, res)=> {
+  await viewBorrowedBooks(req, res);
+})
 
 module.exports = router;
