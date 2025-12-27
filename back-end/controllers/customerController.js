@@ -33,6 +33,7 @@ async function borrowBook(req, res){
         if (await hasBookAlreadyBeenRequested(bookISBN, req.session.user.email)){
             res.write("borrow_already_in_progress");
             res.end();
+            return;
         }
         
         //Extract the current date time at that point
@@ -44,7 +45,7 @@ async function borrowBook(req, res){
         const query = `INSERT INTO borrowed_books(book_isbn, borrow_date_time, customer_email, borrow_completed
         ,borrow_approved_by_staff) 
         VALUES($1, $2, $3, $4, $5)`;
-        await library_db.query(query, [bookISBN, todayDateTime, req.session.user.email, "NO", "NO"]);
+        await library_db.query(query, [bookISBN, todayDateTime, req.session.user.email, "NO", "PENDING"]);
         res.write("success");
         res.end();
     }
@@ -74,7 +75,6 @@ async function hasBookAlreadyBeenRequested(book_isbn, customer_email){ //Check i
         const query = `SELECT * FROM borrowed_books WHERE book_isbn = $1 AND customer_email = $2 AND borrow_completed = $3`;
         const rawData = await library_db.query(query, [book_isbn, customer_email, "NO"]);
         if (rawData.rows.length > 0){
-            console.log(`book is already borrowed`);
             return true;
         }
         else return false;

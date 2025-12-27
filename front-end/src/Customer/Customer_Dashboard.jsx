@@ -22,7 +22,7 @@ function Customer_Dashboard(){
                 <div className="homepage-card">
                         <h2>View Bookings</h2>
                         <p>View current bookings.</p>
-                        <button id="div_1-button_1" type="button" className="btn homepage-btn" onClick={()=>{navigation("viewBookings")}}>Go</button>
+                        <button id="div_1-button_1" type="button" className="btn homepage-btn" onClick={()=>{navigation("viewBorrowedBooks")}}>Go</button>
                 </div>
             </div>
         </>
