@@ -86,7 +86,7 @@ async function signInUser(req, res) {
     }
 
     const role = await getAccountRole(email);
-    await initializeUserSession(req, role);
+    await initializeUserSession(req, role, email);
 
     return res.json({ status: "success", role });
   } catch (error) {
@@ -135,10 +135,11 @@ async function AllFilled(email, password){
   }
   return true;
 }
-async function initializeUserSession(req, role) {
+async function initializeUserSession(req, role, email) {
 
-  req.session.user = { role: role };
+  req.session.user = { role: role, email: email };
   console.log(`signed in session role: ${req.session.user.role}`);
+  console.log(`signed in session email: ${req.session.user.email}`);
   req.session.save(() => { console.log("session saved!"); });
   return true;
 }

@@ -15,8 +15,33 @@ async function createTables(){
     await createTable_accounts();
     // await createTable_faculties();
     await createTable_Library();
+    await createTable_borrowed_books();
     await insertDummyData();
 }
+
+async function createTable_borrowed_books(){
+    const library_db = await connectoToDB();
+
+    //borrow_completed tells if the book has been returned after being borrowed or not, its values can either be
+    //..NO or NO
+    //When a user requests to borrow a book, that borrow has to be accepted by staff, if staff has accepted the borrow
+    //..then borrow_approved_by_staff becomes YES, otherwise it remains NO by default
+    try{
+        const query = `CREATE TABLE IF NOT EXISTS borrowed_books (
+        book_isbn INT PRIMARY KEY,
+        borrow_date_time TIMESTAMPTZ,
+        customer_email VARCHAR(250),
+        borrow_completed VARCHAR(3),
+        borrow_approved_by_staff VARCHAR(3)
+        )`;
+        await library_db.query(query);
+        console.log(`Table: borrowed_books has been created!`);
+    }
+    catch(error){
+        console.log(`allTables.js -> createTable_borrowed_books: ${error.message}`);
+    }
+}
+
 async function createTable_Library(){
     const client = await connectoToDB();
     if (!client) {

@@ -9,6 +9,11 @@ const {
   viewLibrary
 } = require("../controllers/libraryController.js");
 
+const {
+  viewBookCatalog,
+  borrowBook,
+} = require("../controllers/customerController.js");
+
 // ADD
 router.post("/addBook", async(req, res)=>{
   console.log ("connection has been made to route!");
@@ -22,5 +27,17 @@ router.post("/deleteBook", deleteBook);
 
 // VIEW
 router.get("/viewLibrary", viewLibrary);
+
+// Routes for customer //
+//View book catalog
+router.get("/viewBookCatalog", async(req, res)=>{ 
+  await viewBookCatalog(req, res);
+
+});
+
+//Borrow book
+router.post("/borrowBook", async(req, res)=>{
+  await borrowBook(req, res);
+});
 
 module.exports = router;
