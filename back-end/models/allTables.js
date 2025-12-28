@@ -29,7 +29,8 @@ async function createTable_borrowed_books(){
     //..then it becomes REJECTED
     try{
         const query = `CREATE TABLE IF NOT EXISTS borrowed_books (
-        book_isbn VARCHAR(50) PRIMARY KEY,
+        borrow_id SERIAL PRIMARY KEY,
+        book_isbn VARCHAR(50),
         borrow_date DATE,
         customer_email VARCHAR(250),
         borrow_completed VARCHAR(3),
