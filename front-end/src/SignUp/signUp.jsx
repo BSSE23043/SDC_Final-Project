@@ -46,15 +46,7 @@ function SignUp() {
     return (
         <>
             <Navbar pageType="Sign Up" />
-            <div style={{
-                minHeight: "100vh",
-                background: "linear-gradient(rgba(244,241,234,0.78), rgba(244,241,234,0.78)), url('/images/library-signup.svg') center/cover no-repeat",
-                backgroundAttachment: "fixed",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "flex-start"
-            }}>
+            <div className="sign-up-page">
                 <div style={{
                     marginTop: "1rem",
                     marginBottom: "1rem",

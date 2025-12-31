@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Navbar from "../Nav/Navbar";
+import './Library.css';
 
 function EditBook(){
     fetchAndDisplayBooks();
@@ -28,7 +29,7 @@ function EditBook(){
             width: "380px",
             border: "1px solid var(--primary)"
         }}>
-
+            <div className="component-hero"><img src="/images/book2.svg" className="page-hero-img" alt="Edit book"/><h2>Edit Book</h2></div>
             {/* Dropdown */}
             <div className="dropdown mb-4">
                 <button className="btn btn-warning dropdown-toggle w-100" data-bs-toggle="dropdown">

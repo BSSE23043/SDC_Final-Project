@@ -110,6 +110,49 @@ async function handleBorrowCompletion(req, res){
   }
 }
 
+async function handleBorrowApproval(req, res){
+  try{
+    const { action, customer_email, book_isbn } = req.body;
+    if (!action || !customer_email || !book_isbn){ res.write("missing_entries"); res.end(); return; }
+
+    const client = await connectToDB();
+    const rawData = await client.query("SELECT borrow_approved_by_staff FROM borrowed_books WHERE customer_email = $1 AND book_isbn = $2", [customer_email, book_isbn]);
+    if (rawData.rows.length == 0){ res.write("no_borrow_found"); res.end(); return; }
+
+    // If already accepted and trying to accept again
+    if (rawData.rows[0].borrow_approved_by_staff == "ACCEPTED" && action == "ACCEPTED"){ res.write("already_approved"); res.end(); return; }
+
+    if (action == "ACCEPTED"){
+      // Check stock
+      const stock = await client.query("SELECT quantity FROM library WHERE isbn = $1", [book_isbn]);
+      if (stock.rows[0].quantity <= 0){ res.write("book_is_out_of_stock"); res.end(); return; }
+
+      await client.query("UPDATE borrowed_books SET borrow_approved_by_staff = $1, borrow_date = CURRENT_DATE, deadline_date = CURRENT_DATE + INTERVAL '14 days' WHERE customer_email = $2 AND book_isbn = $3", [action, customer_email, book_isbn]);
+      await client.query("UPDATE library SET quantity = quantity - 1 WHERE isbn = $1", [book_isbn]);
+
+      res.write("success");
+      res.end();
+      return;
+    }
+    else if (action == "REJECTED"){
+      await client.query("UPDATE borrowed_books SET borrow_approved_by_staff = $1 WHERE customer_email = $2 AND book_isbn = $3", [action, customer_email, book_isbn]);
+      res.write("success");
+      res.end();
+      return;
+    }
+    else{
+      res.write("invalid_action");
+      res.end();
+      return;
+    }
+  }
+  catch(error){
+    console.log(`libraryController.js -> handleBorrowApproval: ${error.message}`);
+    res.write("failure");
+    res.end();
+  }
+}
+
 module.exports = {
   addBook,
   editBooks,
@@ -118,4 +161,5 @@ module.exports = {
   viewLibrary,
   viewBorrows,
   handleBorrowCompletion,
-};
+  handleBorrowApproval,
+}

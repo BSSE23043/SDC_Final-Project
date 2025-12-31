@@ -1,4 +1,5 @@
 import Navbar from "../Nav/Navbar";
+import './Library.css';
 // import addBookCard from "../../../assets/addInventory.png";
 // import editBookCard from "../../../assets/editInventoryCard.png";
 import { useNavigate } from "react-router-dom";
@@ -28,8 +29,8 @@ function Library_Dashboard(){
             }}>
 
             {/* Add Book */}
-            <div onClick={goToAddBook} className="card" style={cardStyle}>
-                <img src={"#"} className="card-img-top" style={imgStyle}/>
+            <div onClick={goToAddBook} className="card library-card" style={cardStyle}>
+                <img src={'/images/book1.svg'} className="card-img-top" style={imgStyle} alt="Add book"/>
                 <div className="card-body text-center">
                     <h5 style={titleStyle}>Add Book</h5>
                     <p>Add new books to library</p>
@@ -38,8 +39,8 @@ function Library_Dashboard(){
             </div>
 
             {/* Edit Book */}
-            <div onClick={goToEditBook} className="card" style={cardStyle}>
-                <img src={"#"} className="card-img-top" style={imgStyle}/>
+            <div onClick={goToEditBook} className="card library-card" style={cardStyle}>
+                <img src={'/images/book2.svg'} className="card-img-top" style={imgStyle} alt="Edit books"/>
                 <div className="card-body text-center">
                     <h5 style={titleStyle}>Edit Books</h5>
                     <p>Edit or delete existing books</p>
@@ -47,9 +48,9 @@ function Library_Dashboard(){
                 </div>
             </div>
 
-            {/* Edit Book */}
-            <div onClick={()=>{navigate("viewBorrows")}} className="card" style={cardStyle}>
-                <img src={"#"} className="card-img-top" style={imgStyle}/>
+            {/* View Borrowings */}
+            <div onClick={()=>{navigate("viewBorrows")}} className="card library-card" style={cardStyle}>
+                <img src={'/images/book3.svg'} className="card-img-top" style={imgStyle} alt="View borrows"/>
                 <div className="card-body text-center">
                     <h5 style={titleStyle}>View Book Borrowings</h5>
                     <p>View and manage all the books and their borrowings</p>

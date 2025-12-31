@@ -33,13 +33,23 @@ function fetchData_borrowedBooks(){
             const borrowCompleted = document.createElement("td");
             borrowCompleted.textContent = data.rows[i]["borrow_completed"];
 
-            //Deadline
-            //-> If borrow has not been accepted or has been completed then there is no deadline
+            // Deadline
+            // -> If borrow has not been accepted or has been completed then there is no deadline
+            function formatDate(dateVal){
+                if (!dateVal) return "-";
+                if (typeof dateVal === "string"){
+                    if (dateVal.includes("T")) return dateVal.split('T')[0];
+                    return dateVal;
+                }
+                try{ return new Date(dateVal).toISOString().slice(0,10); }
+                catch(e){ return String(dateVal); }
+            }
+
             const deadline = document.createElement("td");
-            if (borrowApproval.textContent == "PENDING" || borrowCompleted == "YES" || borrowApproval == "REJECTED"){
+            if (borrowApproval.textContent == "PENDING" || borrowCompleted.textContent == "YES" || borrowApproval.textContent == "REJECTED"){
                 deadline.textContent = "-"}
             else {
-                deadline.textContent = data.rows[i]["deadline_date"];
+                deadline.textContent = formatDate(data.rows[i]["deadline_date"]);
             }
 
             //Compile the table
@@ -67,7 +77,7 @@ function Customer_ViewBorrowedBooks(){
                     <th scope="col">Author</th>
                     <th scope="col">Borrow Approval</th>
                     <th scope="col">Borrow Completed</th>
-                    <th scope="col">Days Left To Return The Book</th>
+                    <th scope="col">Deadline</th>
                     </tr>
                 </thead>
                 <tbody id="customer_viewBorrowedBooks_tableBody">

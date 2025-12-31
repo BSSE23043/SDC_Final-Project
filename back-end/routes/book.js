@@ -8,7 +8,8 @@ const {
   deleteBook,
   viewLibrary,
   viewBorrows,
-  handleBorrowCompletion
+  handleBorrowCompletion,
+  handleBorrowApproval
 } = require("../controllers/libraryController.js");
 
 const {
@@ -57,6 +58,11 @@ router.get("/viewBorrows", async(req, res)=>{
 router.post("/handleBorrowCompletion", async(req, res)=>{
   console.log("route!!");
   await handleBorrowCompletion(req, res);
+});
+
+router.post("/handleBorrowApproval", async(req, res)=>{
+  console.log("handleBorrowApproval route");
+  await handleBorrowApproval(req, res);
 });
 
 module.exports = router;

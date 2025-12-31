@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Navbar from "../Nav/Navbar";
+import './Library.css';
 
 function AddBook(){
 
@@ -50,14 +51,14 @@ function AddBook(){
             alignItems: "center",
             justifyContent: "center"
         }}>
-        <form onSubmit={submitForm} style={{
+<form onSubmit={submitForm} className="library-form-card" style={{
             background: "var(--card-bg)",
             padding: "2rem",
             borderRadius: "18px",
             width: "370px",
             border: "1px solid var(--primary)"
         }}>
-            <h2 style={{textAlign:"center"}}>Add Book</h2>
+            <div className="component-hero"><img src="/images/book1.svg" className="page-hero-img" alt="Add book"/><h2 style={{textAlign:"center", margin:0}}>Add Book</h2></div>
 
             <input
                 type="text"
