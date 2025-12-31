@@ -1,75 +1,21 @@
+import { useEffect, useState } from "react";
 import Navbar from "../Nav/Navbar";
 import Handle_User_Permission from "../Shared_Functions/Sessions_Functions";
 
 function Website_Admin_View_Accounts(){
 
-    let count = 0;
+    useEffect(()=>{fetchAccountsFromDB()}, []);
+    const [accounts, setAccounts] = useState([]);
 
     function fetchAccountsFromDB(){ //This function will fetch the requests from the database, only those requests will be fetched which are marked as pending
     //..and then they will be displayed in the table
-        count ++;
 
         fetch("http://localhost:5000/accounts/fetchAccounts", {
             method: "GET",
         })
         .then((res)=> {return res.json()})
         .then((data)=> {
-            for (let i= 0; i< data.length; i++){
-                console.log (data.length);
-
-                const tBody = document.getElementById("websiteAdmin-viewAccounts-tableBody");
-
-                const tR = document.createElement("tr");
-
-                //Number of the row
-                const rowCount = document.createElement("th");
-                rowCount.scope = "row";
-                rowCount.textContent = i + 1;
-
-                //The name of the account
-                const accountName = document.createElement("td");
-                accountName.textContent = data[i].name;
-
-                //The email of the account
-                const accountEmail = document.createElement("td");
-                accountEmail.textContent = data[i].email;
-
-                //The role of the account
-                const accountRole = document.createElement("td");
-                accountRole.textContent = data[i].role;
-
-                //The status of the account
-                const accountStatus = document.createElement("td");
-                accountStatus.textContent = data[i].account_status;
-
-                //Terminate account button
-                const terminateAccountButton = document.createElement("button");
-                terminateAccountButton.type = "button";
-                terminateAccountButton.className = "btn btn-danger";
-                terminateAccountButton.textContent = "Terminate Account";
-                terminateAccountButton.onclick = ()=>{terminateAccount(data[i].email);}
-                if (data[i].email == "website_admin@itu.edu.pk") //Website admin can not disbale his own account
-                    terminateAccountButton.disabled = true;
-
-                //Restore account button
-                const restoreAccountButton = document.createElement("button");
-                restoreAccountButton.type = "button";
-                restoreAccountButton.className = "btn btn-success";
-                restoreAccountButton.textContent = "Restore Account";
-                restoreAccountButton.onclick = ()=>{restoreAccount(data[i].email);}
-                if (data[i].email == "website_admin@itu.edu.pk") //Website admin can not restore his own account
-                    restoreAccountButton.disabled = true;
-
-                tR.appendChild(rowCount);
-                tR.appendChild(accountName);
-                tR.appendChild(accountEmail);
-                tR.appendChild(accountRole);
-                tR.appendChild(accountStatus);
-                tR.appendChild(terminateAccountButton);
-                tR.appendChild(restoreAccountButton);
-                    
-                tBody.appendChild(tR);
-            }
+            setAccounts(data);
         })
     }
 
@@ -109,9 +55,6 @@ function Website_Admin_View_Accounts(){
         })
     }
 
-    fetchAccountsFromDB(); //Fetch all the accounts inside the table
-    console.log (`count: ${count}`);
-
     return(
         <>
             <Handle_User_Permission webpageRole={"website_admin"}>
@@ -130,11 +73,23 @@ function Website_Admin_View_Accounts(){
                     </tr>
                 </thead>
                 <tbody id="websiteAdmin-viewAccounts-tableBody">
+                {accounts.map((acc, index)=>{
+                    return(
+                        <tr>
+                        <th scope="row">{index + 1}</th>
+                        <td>{acc.name}</td>
+                        <td>{acc.email}</td>
+                        <td>{acc.role}</td>
+                        <td>{acc.account_status}</td>
+                        <td><button className="btn btn-danger" onClick={()=>terminateAccount(acc.email)} disabled={acc.email === "website_admin@itu.edu.pk"}>Terminate Account</button></td>
+                        <td><button className="btn btn-success" onClick={()=>restoreAccount(acc.email)} disabled={acc.email === "website_admin@itu.edu.pk"}>Restore Account</button></td>
+                    </tr>
+                    );
+                })}
                 </tbody>
             </table>
 
             </Handle_User_Permission>
-
         </>
     );
 }

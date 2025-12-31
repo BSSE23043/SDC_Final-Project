@@ -47,6 +47,16 @@ function Library_Dashboard(){
                 </div>
             </div>
 
+            {/* Edit Book */}
+            <div onClick={()=>{navigate("viewBorrows")}} className="card" style={cardStyle}>
+                <img src={"#"} className="card-img-top" style={imgStyle}/>
+                <div className="card-body text-center">
+                    <h5 style={titleStyle}>View Book Borrowings</h5>
+                    <p>View and manage all the books and their borrowings</p>
+                    <button className="btn w-100 pretty-btn">View</button>
+                </div>
+            </div>
+
             </div>
         </>
     );

@@ -84,10 +84,38 @@ async function viewLibrary(req, res){
   res.json(data.rows);
 }
 
+// ================= VIEW Borrowed BOOKS =================
+async function viewBorrows(req, res){
+  const client = await connectToDB();
+  const data = await client.query("SELECT * FROM borrowed_books");
+  res.json(data.rows);
+}
+
+// ================= Handle Borrow Completion =================
+//Borrow completion means if book has been returned by the customer
+async function handleBorrowCompletion(req, res){
+  try{
+    const {markValue, customer_email, book_isbn} = req.body;
+    const client = await connectToDB();
+    const rawData = await client.query("SELECT borrow_approved_by_staff FROM borrowed_books WHERE customer_email = $1 AND book_isbn = $2", [customer_email, book_isbn]);
+    if (rawData.rows[0].borrow_approved_by_staff == "PENDING" || rawData.rows[0].borrow_approved_by_staff == "REJECTED"){res.write("no_borrow_approval"); res.end();}
+    await client.query("UPDATE borrowed_books SET borrow_completed = $1 WHERE customer_email = $2 AND book_isbn = $3", [markValue, customer_email, book_isbn]);
+    res.write("success");
+    res.end();
+  }
+  catch(error){
+    console.log(`libraryController.js -> handleBorrowCompletion: ${error.message}`);
+    res.write("failure");
+    res.end();
+  }
+}
+
 module.exports = {
   addBook,
   editBooks,
   submitEditedBook,
   deleteBook,
-  viewLibrary
+  viewLibrary,
+  viewBorrows,
+  handleBorrowCompletion,
 };

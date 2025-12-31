@@ -6,7 +6,9 @@ const {
   editBooks,
   submitEditedBook,
   deleteBook,
-  viewLibrary
+  viewLibrary,
+  viewBorrows,
+  handleBorrowCompletion
 } = require("../controllers/libraryController.js");
 
 const {
@@ -41,9 +43,20 @@ router.post("/borrowBook", async(req, res)=>{
   await borrowBook(req, res);
 });
 
-//View Borrowed books
+//View Borrowed books for Customer
 router.post("/viewBorrowedBooks", async(req, res)=> {
   await viewBorrowedBooks(req, res);
-})
+});
+
+//Routes For Staff //
+//View Borrows for Staff
+router.get("/viewBorrows", async(req, res)=>{
+  await viewBorrows(req, res);
+});
+
+router.post("/handleBorrowCompletion", async(req, res)=>{
+  console.log("route!!");
+  await handleBorrowCompletion(req, res);
+});
 
 module.exports = router;
