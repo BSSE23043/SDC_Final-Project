@@ -25,7 +25,7 @@ function ViewBorrows(){
             {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
-                body: (JSON.stringify({markValue: value, customer_email: customer_email, book_isbn, book_isbn}))
+                body: (JSON.stringify({markValue: value, customer_email: customer_email, book_isbn: book_isbn}))
             }
         )
         .then((res)=>{return res.text();})

@@ -25,7 +25,7 @@ function Homepage(){
                 <div className="homepage-card-container">
                     <div className="homepage-card">
                         <h2>New here?</h2>
-                        <p>Create an account to get started.</p>
+                        <p>Create a customer account to join the library.</p>
                         <button id="div_1-button_1" type="button" className="btn homepage-btn" onClick={goToSignUp}>Sign Up</button>
                     </div>
                     <div className="homepage-card">

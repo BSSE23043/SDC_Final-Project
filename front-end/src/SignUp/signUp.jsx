@@ -76,7 +76,7 @@ function SignUp() {
                             fontWeight: 800,
                             letterSpacing: "1px",
                             fontFamily: "'Segoe UI', 'Roboto', 'Arial', sans-serif"
-                        }}>Sign Up</h1>
+                        }}>Customer Sign Up</h1>
 
                         <div className="mb-3">
                             <label htmlFor="signup-name" className="form-label" style={{fontWeight: 500, color: 'var(--primary)'}}>Name</label>
