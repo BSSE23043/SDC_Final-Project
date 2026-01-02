@@ -2,7 +2,7 @@ import Navbar from "../../../Nav/Navbar";
 
 function fetch_data_inventory(){
 
-    fetch("http://52.202.243.116:5000/inventory/fetchFromInventoryDB")
+    fetch("http://sdclb-108821170.us-east-1.elb.amazonaws.com/inventory/fetchFromInventoryDB")
     .then((res)=>{return res.json()})
     .then((res)=>{
 

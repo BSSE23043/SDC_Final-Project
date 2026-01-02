@@ -10,7 +10,7 @@ async function validateUserPermission(webpage_role){
     //webpage_role means which role has access to the webpage in which this function was called, e.g; all sub_manager webpages 
     //..(dashboard, assign courses, assign inventory, etc) will send "sub_manager" to this function
 
-    const res = await fetch("http://52.202.243.116:5000/session/validateAccountRole", {
+    const res = await fetch("http://sdclb-108821170.us-east-1.elb.amazonaws.com/session/validateAccountRole", {
         method: "POST",
         credentials: "include",
         headers: {"Content-Type": "application/json"},

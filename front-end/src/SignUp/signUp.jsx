@@ -18,7 +18,7 @@ function SignUp() {
     function submitForm(e){
         e.preventDefault();
 
-        fetch("http://52.202.243.116:5000/auth/signup", {
+        fetch("http://sdclb-108821170.us-east-1.elb.amazonaws.com/auth/signup", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({username : userName, password: userPass, email: userEmail, accountType: accountType})

@@ -84,7 +84,7 @@ function EditInventory(){
 
 function fetchAndDisplayData(){ //This function fetches the current inventory items from backend and displays them inside the frontend
     
-    fetch("http://52.202.243.116:5000/inventory/editInventory")
+    fetch("http://sdclb-108821170.us-east-1.elb.amazonaws.com/inventory/editInventory")
     .then((response) => {return response.json()})
     .then((jsonData) => {
 
@@ -112,7 +112,7 @@ function fetchAndDisplayData(){ //This function fetches the current inventory it
 
 function submitEditedInventory(name, quantity, id){ //This function is called when user clicks on submit
 
-    fetch("http://52.202.243.116:5000/inventory/submitEditedInventory", {
+    fetch("http://sdclb-108821170.us-east-1.elb.amazonaws.com/inventory/submitEditedInventory", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({itemName: name, itemQuantity: quantity, itemID: id})
@@ -131,7 +131,7 @@ function submitEditedInventory(name, quantity, id){ //This function is called wh
 
 function deleteInventoryItem(id){ //This function is called when the user clicks on delete button
 
-    fetch("http://52.202.243.116:5000/inventory/editInventoryDelete", {
+    fetch("http://sdclb-108821170.us-east-1.elb.amazonaws.com/inventory/editInventoryDelete", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({itemID: id})

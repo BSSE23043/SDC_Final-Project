@@ -12,7 +12,7 @@ function AddBook(){
     function submitForm(e){
         e.preventDefault();
 
-        fetch("http://52.202.243.116:5000/book/addBook", {
+        fetch("http://sdclb-108821170.us-east-1.elb.amazonaws.com/book/addBook", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({

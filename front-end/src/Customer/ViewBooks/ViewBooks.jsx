@@ -8,7 +8,7 @@ function loadBookCatalog(){
         console.log("Borrow book function called!");
         console.log(bookISBN);
 
-        fetch("http://52.202.243.116:5000/book/borrowBook", {
+        fetch("http://sdclb-108821170.us-east-1.elb.amazonaws.com/book/borrowBook", {
             method: "POST",
             credentials: "include",
             headers: {"Content-Type": "application/json"},
@@ -24,7 +24,7 @@ function loadBookCatalog(){
         })
     }
 
-    fetch("http://52.202.243.116:5000/book/viewBookCatalog", {method: "GET"})
+    fetch("http://sdclb-108821170.us-east-1.elb.amazonaws.com/book/viewBookCatalog", {method: "GET"})
     .then((res)=>{return res.json()})
     .then((data)=>{
         for(let i = 0; i< data.rows.length; i++){

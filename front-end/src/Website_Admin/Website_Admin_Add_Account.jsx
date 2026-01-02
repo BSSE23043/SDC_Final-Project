@@ -11,7 +11,7 @@ function Website_Admin_Add_Account(){
     function submitForm(e){
         e.preventDefault();
         
-        fetch("http://52.202.243.116:5000/accounts/addAccount", {
+        fetch("http://sdclb-108821170.us-east-1.elb.amazonaws.com/accounts/addAccount", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({name: accountName, email: accountEmail, role: accountRole}),

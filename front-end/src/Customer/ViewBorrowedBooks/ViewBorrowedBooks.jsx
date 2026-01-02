@@ -1,7 +1,7 @@
 import Navbar from "../../Nav/Navbar";
 
 function fetchData_borrowedBooks(){
-    fetch("http://52.202.243.116:5000/book/viewBorrowedBooks", {
+    fetch("http://sdclb-108821170.us-east-1.elb.amazonaws.com/book/viewBorrowedBooks", {
         method: "POST",
         credentials: "include"
     })

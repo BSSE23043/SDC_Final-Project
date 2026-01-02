@@ -110,7 +110,7 @@ function EditBook(){
     }
 
     function fetchAndDisplayBooks(){
-        fetch("http://52.202.243.116:5000/book/editBooks")
+        fetch("http://sdclb-108821170.us-east-1.elb.amazonaws.com/book/editBooks")
         .then(res => res.json())
         .then(data => {
             const dropDown = document.getElementById("editBook-dropDown");
@@ -132,7 +132,7 @@ function EditBook(){
     }
 
     function submitEditedBook(name, author, isbn, quantity, id){
-        fetch("http://52.202.243.116:5000/book/submitEditedBook", {
+        fetch("http://sdclb-108821170.us-east-1.elb.amazonaws.com/book/submitEditedBook", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({name, author, isbn, quantity, id})
@@ -146,7 +146,7 @@ function EditBook(){
     }
 
     function deleteBook(id){
-        fetch("http://52.202.243.116:5000/book/deleteBook", {
+        fetch("http://sdclb-108821170.us-east-1.elb.amazonaws.com/book/deleteBook", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({id})

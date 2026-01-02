@@ -8,9 +8,17 @@ const book = require("./routes/book.js");
 const app = express();
 const PORT = 5000;
 
-app.use(cors({origin: ["http://localhost:5173", "http://52.202.243.116:5173"], credentials: true}));
+app.use(cors({origin: ["http://localhost:5173", "http://sdclb-108821170.us-east-1.elb.amazonaws.com"], credentials: true}));
 app.use(require("./session.js"));
 app.use(express.json());      // <-- parse JSON bodies
+
+
+// Serve frontend
+app.use(express.static(path.join(__dirname, "../front-end/dist")));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, "../front-end/dist/index.html"));
+});
 
 //Routes
 app.use("/auth", auth);

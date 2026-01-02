@@ -8,7 +8,7 @@ const [itemQuantity, setItemQuantity] = useState(""); //If the above thing happe
     function fetchPendingRequestsFromDB(){ //This function will fetch the requests from the database, only those requests will be fetched which are marked as pending
     //..and then they will be displayed in the table
 
-        fetch("http://52.202.243.116:5000/inventory/pendingInventoryRequests", {
+        fetch("http://sdclb-108821170.us-east-1.elb.amazonaws.com/inventory/pendingInventoryRequests", {
             method: "GET",
         })
         .then((res)=> {return res.json()})
@@ -65,7 +65,7 @@ const [itemQuantity, setItemQuantity] = useState(""); //If the above thing happe
         //The mark in parameter can either be accepted or rejected
         var response = null;
 
-        fetch("http://52.202.243.116:5000/inventory/markPendingRequest", {
+        fetch("http://sdclb-108821170.us-east-1.elb.amazonaws.com/inventory/markPendingRequest", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({id: id, mark: mark})
@@ -81,7 +81,7 @@ const [itemQuantity, setItemQuantity] = useState(""); //If the above thing happe
 
         markRequest(id, "Accepted"); //Mark the inventory request as accepted
 
-        fetch("http://52.202.243.116:5000/inventory/addInventoryItem", {
+        fetch("http://sdclb-108821170.us-east-1.elb.amazonaws.com/inventory/addInventoryItem", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({itemName: itemName, itemQuantity: itemQuantity})

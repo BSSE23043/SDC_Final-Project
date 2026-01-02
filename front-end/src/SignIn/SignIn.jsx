@@ -27,7 +27,7 @@ function SignIn(){
 
     function submitform(e) {
         e.preventDefault();
-        fetch("http://52.202.243.116:5000/auth/signin", {
+        fetch("http://sdclb-108821170.us-east-1.elb.amazonaws.com/auth/signin", {
             method: "POST",
             credentials: "include",
             headers: { "Content-Type": "application/json" },
