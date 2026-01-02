@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Navbar from "../Nav/Navbar";
 import './Library.css';
+import Handle_User_Permission from "../Shared_Functions/Sessions_Functions";
 
 function EditBook(){
     fetchAndDisplayBooks();

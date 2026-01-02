@@ -1,6 +1,7 @@
 import Navbar from "../Nav/Navbar";
 import { useNavigate } from "react-router-dom";
 import "./Customer_Dashboard.css";
+import Handle_User_Permission from "../Shared_Functions/Sessions_Functions";
 
 function Customer_Dashboard(){
 

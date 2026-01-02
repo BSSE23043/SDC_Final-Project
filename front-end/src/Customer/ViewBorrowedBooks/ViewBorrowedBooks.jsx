@@ -1,4 +1,5 @@
 import Navbar from "../../Nav/Navbar";
+import Handle_User_Permission from "../../Shared_Functions/Sessions_Functions";
 
 function fetchData_borrowedBooks(){
     fetch("http://sdclb-108821170.us-east-1.elb.amazonaws.com/book/viewBorrowedBooks", {
