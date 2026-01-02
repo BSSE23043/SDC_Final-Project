@@ -8,7 +8,7 @@ function ViewBorrows(){
     const [borrows, setBorrows] = useState([]);
 
     function fetchBorrowings(){
-       fetch("http://98.92.174.150:5000/book/viewBorrows", {
+       fetch("http://52.202.243.116:5000/book/viewBorrows", {
             method: "GET",
         })
         .then((res)=>{return res.json();})
@@ -33,7 +33,7 @@ function ViewBorrows(){
     }
 
     function handleBorrowCompletion(value, customer_email, book_isbn){
-        fetch("http://98.92.174.150:5000/book/handleBorrowCompletion", 
+        fetch("http://52.202.243.116:5000/book/handleBorrowCompletion", 
             {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
@@ -50,7 +50,7 @@ function ViewBorrows(){
     }
 
     function handleBorrowApproval(action, customer_email, book_isbn){
-        fetch("http://98.92.174.150:5000/book/handleBorrowApproval", {
+        fetch("http://52.202.243.116:5000/book/handleBorrowApproval", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({action: action, customer_email: customer_email, book_isbn: book_isbn})

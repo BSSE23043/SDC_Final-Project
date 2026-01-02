@@ -5,7 +5,7 @@ import Navbar from "../Nav/Navbar";
 function loadBookCatalog(){
 
 
-    fetch("http://98.92.174.150:5000/book/viewBookCatalog", {method: "GET"})
+    fetch("http://52.202.243.116:5000/book/viewBookCatalog", {method: "GET"})
     .then((res)=>{return res.json()})
     .then((data)=>{
         for(let i = 0; i< data.rows.length; i++){

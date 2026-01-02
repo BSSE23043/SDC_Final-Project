@@ -8,7 +8,7 @@ const book = require("./routes/book.js");
 const app = express();
 const PORT = 5000;
 
-app.use(cors({origin: ["http://localhost:5173", "http://98.92.174.150:5173"], credentials: true}));
+app.use(cors({origin: ["http://localhost:5173", "http://52.202.243.116:5173"], credentials: true}));
 app.use(require("./session.js"));
 app.use(express.json());      // <-- parse JSON bodies
 

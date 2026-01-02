@@ -2,7 +2,7 @@ import Navbar from "../../../Nav/Navbar";
 
 function fetch_data_inventory(){
 
-    fetch("http://98.92.174.150:5000/inventory/fetchFromInventoryDB")
+    fetch("http://52.202.243.116:5000/inventory/fetchFromInventoryDB")
     .then((res)=>{return res.json()})
     .then((res)=>{
 
