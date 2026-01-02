@@ -99,7 +99,7 @@ async function handleBorrowCompletion(req, res){
     const {markValue, customer_email, book_isbn} = req.body;
     const client = await connectToDB();
     const rawData = await client.query("SELECT borrow_approved_by_staff FROM borrowed_books WHERE customer_email = $1 AND book_isbn = $2", [customer_email, book_isbn]);
-    if (rawData.rows[0].borrow_approved_by_staff == "PENDING" || rawData.rows[0].borrow_approved_by_staff == "REJECTED"){res.write("no_borrow_approval"); res.end();}
+    if (rawData.rows[0].borrow_approved_by_staff == "PENDING" || rawData.rows[0].borrow_approved_by_staff == "REJECTED"){res.write("no_borrow_approval"); res.end(); return;}
     await client.query("UPDATE borrowed_books SET borrow_completed = $1 WHERE customer_email = $2 AND book_isbn = $3", [markValue, customer_email, book_isbn]);
 
     if (markValue == "YES"){
