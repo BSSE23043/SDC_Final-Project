@@ -60,7 +60,10 @@ async function connectToLibrary_db(){ //Connect to library_db database
         host: "sdcprojectrds.cpfdu0lrzhyb.us-east-1.rds.amazonaws.com",
         password: "manalumar44",
         database: "library_db",
-        port: "5432"
+        port: "5432",
+        ssl: {
+        rejectUnauthorized: false // allows self-signed RDS cert
+        }
     });
     try{
         await newClient.connect();
