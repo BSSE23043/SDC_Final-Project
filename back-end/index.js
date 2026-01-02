@@ -30,7 +30,7 @@ app.use("/book", book);
 app.use(express.static(path.join(__dirname, "../front-end/dist")));
 
 //React fallback
-app.get("/*", (req, res) => {
+app.get(/.*/, (req, res) => {
   res.sendFile(path.join(__dirname, "../front-end/dist/index.html"));
 });
 
