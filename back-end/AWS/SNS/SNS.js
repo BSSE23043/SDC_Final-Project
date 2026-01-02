@@ -54,7 +54,7 @@ async function sendNotification(targetSubscriberEmail, subject, message) {
     const params = {
         Message: message,
         TopicArn: topicArn,
-        Subjct: subject,
+        Subject: subject,
         MessageAttributes: {
             "email": {
                 DataType: "String",
