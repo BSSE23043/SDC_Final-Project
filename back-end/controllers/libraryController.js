@@ -102,7 +102,7 @@ async function handleBorrowCompletion(req, res){
     if (rawData.rows[0].borrow_approved_by_staff == "PENDING" || rawData.rows[0].borrow_approved_by_staff == "REJECTED"){res.write("no_borrow_approval"); res.end();}
     await client.query("UPDATE borrowed_books SET borrow_completed = $1 WHERE customer_email = $2 AND book_isbn = $3", [markValue, customer_email, book_isbn]);
 
-    if (markValue = "YES"){
+    if (markValue == "YES"){
       await increaseBookQuantity(book_isbn);
       await sendNotification(customer_email, "Book Returned Successfully!", `You have returned your borrowed book with the following ISBN: ${book_isbn}.`);
     }
