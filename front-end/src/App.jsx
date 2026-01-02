@@ -14,7 +14,7 @@ import Customer_Dashboard from './Customer/Customer_Dashboard.jsx';
 import Customer_ViewBooks from './Customer/ViewBooks/ViewBooks.jsx';
 import Customer_ViewBorrowedBooks from './Customer/ViewBorrowedBooks/ViewBorrowedBooks.jsx';
 import ViewBorrows from './Library/ViewBorrows.jsx';
-
+import Staff_ViewBooks from './Library/ViewBook.jsx';
 function App() {
   return (
       <BrowserRouter>
@@ -33,7 +33,7 @@ function App() {
         <Route path="customer_dashboard/viewBooks" element = {<Customer_ViewBooks/>}/>
         <Route path="customer_dashboard/viewBorrowedBooks" element = {<Customer_ViewBorrowedBooks/>}/>
         <Route path="library_Dashboard/viewBorrows" element = {<ViewBorrows/>}/>
-  
+        <Route path="library/viewBook" element = {<Staff_ViewBooks/>}/>
         </Routes>
       </BrowserRouter>
   )

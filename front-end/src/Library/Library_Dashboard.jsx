@@ -15,7 +15,9 @@ function Library_Dashboard(){
     function goToEditBook(){
         navigate("/Library/editBook");
     }
-
+    function goToViewBook(){
+        navigate("/library/viewBook");
+    }
     return (
         <>
             <Navbar pageType="Library Dashboard"/>
@@ -45,6 +47,14 @@ function Library_Dashboard(){
                     <h5 style={titleStyle}>Edit Books</h5>
                     <p>Edit or delete existing books</p>
                     <button className="btn w-100 pretty-btn">Edit</button>
+                </div>
+            </div>
+              <div onClick={goToViewBook} className="card library-card" style={cardStyle}>
+                <img src={'/images/book2.svg'} className="card-img-top" style={imgStyle} alt="View books"/>
+                <div className="card-body text-center">
+                    <h5 style={titleStyle}>View Books</h5>
+                    <p>View existing books</p>
+                    <button className="btn w-100 pretty-btn">View</button>
                 </div>
             </div>
 
