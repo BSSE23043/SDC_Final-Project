@@ -1,4 +1,5 @@
 const connectToDB = require("../models/setupDB.js");
+const {sendNotification} = require("../AWS/SNS/SNS.js");
 
 // ================= ADD BOOK =================
 async function addBook(req, res){
@@ -100,6 +101,7 @@ async function handleBorrowCompletion(req, res){
     const rawData = await client.query("SELECT borrow_approved_by_staff FROM borrowed_books WHERE customer_email = $1 AND book_isbn = $2", [customer_email, book_isbn]);
     if (rawData.rows[0].borrow_approved_by_staff == "PENDING" || rawData.rows[0].borrow_approved_by_staff == "REJECTED"){res.write("no_borrow_approval"); res.end();}
     await client.query("UPDATE borrowed_books SET borrow_completed = $1 WHERE customer_email = $2 AND book_isbn = $3", [markValue, customer_email, book_isbn]);
+    await increaseBookQuantity(book_isbn);
     res.write("success");
     res.end();
   }
@@ -107,6 +109,7 @@ async function handleBorrowCompletion(req, res){
     console.log(`libraryController.js -> handleBorrowCompletion: ${error.message}`);
     res.write("failure");
     res.end();
+    return;
   }
 }
 
@@ -130,12 +133,16 @@ async function handleBorrowApproval(req, res){
       await client.query("UPDATE borrowed_books SET borrow_approved_by_staff = $1, borrow_date = CURRENT_DATE, deadline_date = CURRENT_DATE + INTERVAL '14 days' WHERE customer_email = $2 AND book_isbn = $3", [action, customer_email, book_isbn]);
       await client.query("UPDATE library SET quantity = quantity - 1 WHERE isbn = $1", [book_isbn]);
 
+      await sendNotification(customer_email, "Book borrow has been accepted!", `Your borrow request for book with ISBN: ${book_isbn} has been ACCEPTED!`);
+
       res.write("success");
       res.end();
       return;
     }
     else if (action == "REJECTED"){
       await client.query("UPDATE borrowed_books SET borrow_approved_by_staff = $1 WHERE customer_email = $2 AND book_isbn = $3", [action, customer_email, book_isbn]);
+      await sendNotification(customer_email, "Book borrow has been rejected!", `Your borrow request for book with ISBN: ${book_isbn} has been REJECTED!`);
+
       res.write("success");
       res.end();
       return;
@@ -150,6 +157,21 @@ async function handleBorrowApproval(req, res){
     console.log(`libraryController.js -> handleBorrowApproval: ${error.message}`);
     res.write("failure");
     res.end();
+  }
+}
+
+async function increaseBookQuantity(book_isbn){
+  try{
+    const library_db = connectToDB();
+
+    const rawData = await library_db.query("SELECT quantity FROM library where isbn = $1", [book_isbn]);
+    const currentBookQuantity = rawData[0]["quantity"];
+
+    const newBookQuantity = currentBookQuantity + 1;
+    await library_db.query("UPDATE library SET quantity = $1 WHERE isbn = $2", [newBookQuantity, book_isbn]);
+  }
+  catch(error){
+    console.log(`libraryController.js -> increaseBookQuantity: ${error.message}`);
   }
 }
 

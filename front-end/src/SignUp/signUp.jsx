@@ -5,6 +5,8 @@ import { useState } from "react";
 
 function SignUp() {
 
+    const navigate = useNavigate();
+
     //These are the variables of the form
     //When the form gets submitted, the input values get saved in these variables
     const [userName, setUserName] = useState("");
@@ -27,13 +29,13 @@ function SignUp() {
                 window.alert("Account on this email already exists!");
             }
             else if (textResponse == "success"){
-                window.alert("Account has been created! You have been sent a confirmation email, kindly accept it!");
+                window.alert("Account has been created! You have been sent an SNS subscription confirmation email, kindly accept it!");
+                navigate("/"); //Navigtate to homepage
             }
             else if (textResponse == "missing_entries"){
                 window.alert("Please fill all the form!");
             }
         });
-           
     }
 
     return (

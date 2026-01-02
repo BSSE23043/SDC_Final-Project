@@ -27,7 +27,12 @@ async function addSubscriber(email) {
     const params = {
       Protocol: "email",  // for email notifications
       TopicArn: topicArn,
-      Endpoint: email      // the email you want to subscribe
+      Endpoint: email,      // the email you want to subscribe
+       Attributes: {
+        FilterPolicy: JSON.stringify({
+            email: [email]   // Only messages with this email attribute will go to this subscriber
+        })
+    }
     };
 
     const result = await sns_sdk.subscribe(params).promise();
@@ -41,14 +46,21 @@ async function addSubscriber(email) {
   }
 }
 
-async function sendNotification(message) {
+async function sendNotification(targetSubscriberEmail, subject, message) {
   try{
     const topicArn = "arn:aws:sns:us-east-1:942453882347:sdcProjectSNS";
     const sns_sdk = await connectToSNS();
 
     const params = {
         Message: message,
-        TopicArn: topicArn
+        TopicArn: topicArn,
+        Subjct: subject,
+        MessageAttributes: {
+            "email": {
+                DataType: "String",
+                StringValue: targetSubscriberEmail
+            }
+        }
     };
 
     await sns_sdk.publish(params).promise();
