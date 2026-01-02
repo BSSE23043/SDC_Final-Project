@@ -101,8 +101,16 @@ async function handleBorrowCompletion(req, res){
     const rawData = await client.query("SELECT borrow_approved_by_staff FROM borrowed_books WHERE customer_email = $1 AND book_isbn = $2", [customer_email, book_isbn]);
     if (rawData.rows[0].borrow_approved_by_staff == "PENDING" || rawData.rows[0].borrow_approved_by_staff == "REJECTED"){res.write("no_borrow_approval"); res.end();}
     await client.query("UPDATE borrowed_books SET borrow_completed = $1 WHERE customer_email = $2 AND book_isbn = $3", [markValue, customer_email, book_isbn]);
-    await increaseBookQuantity(book_isbn);
-    await sendNotification(customer_email, "Book Returned Successfully!", `You have returned your borrowed book with the following ISBN: ${book_isbn}.`)
+
+    if (markValue = "YES"){
+      await increaseBookQuantity(book_isbn);
+      await sendNotification(customer_email, "Book Returned Successfully!", `You have returned your borrowed book with the following ISBN: ${book_isbn}.`);
+    }
+    else if (markValue == "NO"){
+      await decreaseBookQuantity(book_isbn);
+      await sendNotification(customer_email, "Revision in book return!", `Staff has marked your book with the ISBN ${book_isbn} as "not returned", it was previously marked as returned.`);
+    }
+    
     res.write("success");
     res.end();
   }
@@ -163,12 +171,27 @@ async function handleBorrowApproval(req, res){
 
 async function increaseBookQuantity(book_isbn){
   try{
-    const library_db = connectToDB();
+    const library_db = await connectToDB();
 
     const rawData = await library_db.query("SELECT quantity FROM library where isbn = $1", [book_isbn]);
     const currentBookQuantity = rawData[0]["quantity"];
 
     const newBookQuantity = currentBookQuantity + 1;
+    await library_db.query("UPDATE library SET quantity = $1 WHERE isbn = $2", [newBookQuantity, book_isbn]);
+  }
+  catch(error){
+    console.log(`libraryController.js -> increaseBookQuantity: ${error.message}`);
+  }
+}
+
+async function decreaseBookQuantity(book_isbn){
+  try{
+    const library_db = await connectToDB();
+
+    const rawData = await library_db.query("SELECT quantity FROM library where isbn = $1", [book_isbn]);
+    const currentBookQuantity = rawData[0]["quantity"];
+
+    const newBookQuantity = currentBookQuantity - 1;
     await library_db.query("UPDATE library SET quantity = $1 WHERE isbn = $2", [newBookQuantity, book_isbn]);
   }
   catch(error){
