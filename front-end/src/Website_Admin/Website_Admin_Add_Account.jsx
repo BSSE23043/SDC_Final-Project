@@ -66,7 +66,7 @@ function Website_Admin_Add_Account(){
             fontWeight: 800,
             letterSpacing: "1px",
             fontFamily: "'Segoe UI', 'Roboto', 'Arial', sans-serif"
-        }}>Add User Account</h2>
+        }}>Add Staff Account</h2>
         <div className="mb-3">
             <label htmlFor="add-inventory-item-name" className="form-label" style={{fontWeight: 500, color: 'var(--text)'}}>Name</label>
             <input onChange={(e)=>{setAccountName(e.target.value);}} type="text" className="form-control" id="add-inventory-item-name" style={{borderRadius: "8px", background: 'var(--card-bg)', color: 'var(--text)', border: '1px solid rgba(0,36,107,0.12)'}} aria-describedby="emailHelp" />
@@ -74,7 +74,7 @@ function Website_Admin_Add_Account(){
         <div className="mb-3">
             <label htmlFor="add-inventory-item-name" className="form-label" style={{fontWeight: 500, color: 'var(--text)'}}>Email</label>
             <input onChange={(e)=>{setAccountEmail(e.target.value);}} type="email" className="form-control" id="add-inventory-item-name" style={{borderRadius: "8px", background: 'var(--card-bg)', color: 'var(--text)', border: '1px solid rgba(0,36,107,0.12)'}} aria-describedby="emailHelp" />
-            <div className="form-text" style={{color: 'var(--muted)'}}>University assigned email for this person.</div>
+            <div className="form-text" style={{color: 'var(--muted)'}}>Office assigned email for this person.</div>
         </div>
         <div className="mb-3">
             <label htmlFor="add-inventory-quantity" className="form-label" style={{fontWeight: 500, color: 'var(--text)'}}>Role</label>
