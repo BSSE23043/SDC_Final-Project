@@ -25,7 +25,7 @@ function Website_Admin_Add_Account(){
                 window.alert("This staff member already exists!");
             }
             else if (textResponse == "new_row_added"){
-                window.alert("New staff member has been added!");
+                window.alert("New staff member has been added! They have been sent SNS Subscription email.");
             }
             else if (textResponse == "error"){
                 window.alert("An unexpected error has occurred, please contact the developers!");

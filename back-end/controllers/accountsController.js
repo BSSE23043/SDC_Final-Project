@@ -1,5 +1,6 @@
 const connectToDB = require("../models/setupDB.js");
 const {addUserAccount, accountAlreadyExists, terminateUserAccount, restoreUserAccount} = require("../sharedFunctions.js")
+const {sendNotification, addSubscriber} = require("../AWS/SNS/SNS.js");
 
 //-------------Website Admin Add Account Starts Here------------------------//
 
@@ -23,6 +24,7 @@ async function addAccount(req, res){
 
     //If everything is fine then add this user account
     await addUserAccount(name, email, "123", role);
+    addSubscriber(email);
     res.write("new_row_added");
     res.end();
 }
@@ -54,6 +56,7 @@ async function terminateAccount(req, res){
     const {email} = req.body;
 
     if (await terminateUserAccount(email)){
+        sendNotification(email, "Account Termination", "Your account has been terminated from library management system! You can no longer log in");
         res.write("success");
         res.end();
     }
@@ -68,6 +71,7 @@ async function restoreAccount(req, res){
     const {email} = req.body;
 
     if (await restoreUserAccount(email)){
+        sendNotification(email, "Account Restoration", "Your account has been restored for library management system website! You can now log in!");
         res.write("success");
         res.end();
     }
