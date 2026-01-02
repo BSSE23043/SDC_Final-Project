@@ -73,8 +73,8 @@ async function hasBookAlreadyBeenRequested(book_isbn, customer_email){ //Check i
     try{
         const library_db = await connectToDatabase();
 
-        const query = `SELECT * FROM borrowed_books WHERE book_isbn = $1 AND customer_email = $2 AND borrow_completed = $3 AND borrow_approved_by_staff = $3 OR borrow_approved_by_staff = $4`;
-        const rawData = await library_db.query(query, [book_isbn, customer_email, "NO", "ACCEPTED", "PENDING"]);
+        const query = `SELECT * FROM borrowed_books WHERE book_isbn = $1 AND customer_email = $2 AND borrow_completed = $3 AND (borrow_approved_by_staff = $3 OR borrow_approved_by_staff = $4)`;
+        const rawData = await library_db.query(query, [book_isbn, customer_email, "NO", "PENDING", "ACCEPTED"]);
         if (rawData.rows.length > 0){
             return true;
         }
