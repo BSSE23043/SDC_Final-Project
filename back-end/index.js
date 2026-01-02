@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 const auth = require('./routes/auth.js');
 const accounts = require('./routes/accounts.js');
 const createTables = require("./models/allTables.js");
