@@ -30,11 +30,13 @@ function loadBookCatalog(){
             const availableQuantity = document.createElement("td");
             availableQuantity.textContent = data.rows[i]["quantity"];
 
-        
-            
-            
+            //Book ISBN
+            const book_isbn = document.createElement("td");
+            book_isbn.textContent = data.rows[i]["isbn"];
+
             //Compile the table
             row.appendChild(rowNumber);
+            row.appendChild(book_isbn);
             row.appendChild(bookName);
             row.appendChild(authorName);
             row.appendChild(availableQuantity);
@@ -53,6 +55,7 @@ function Staff_ViewBooks(){
                 <thead>
                     <tr>
                     <th scope="col">#</th>
+                    <th scope="col">ISBN</th>
                     <th scope="col">Title</th>
                     <th scope="col">Author</th>
                     <th scope="col">Available Stock</th>
