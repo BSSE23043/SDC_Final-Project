@@ -42,6 +42,7 @@ function AddBook(){
 
     return(
         <>
+        <Handle_User_Permission webpageRole = "staff">
         <Navbar pageType="Add Library Book"/>
 
         <div style={{
@@ -93,6 +94,7 @@ function AddBook(){
             </button>
         </form>
         </div>
+        </Handle_User_Permission>
         </>
     );
 }

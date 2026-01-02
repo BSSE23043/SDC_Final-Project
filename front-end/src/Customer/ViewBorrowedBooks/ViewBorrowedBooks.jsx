@@ -68,6 +68,7 @@ function Customer_ViewBorrowedBooks(){
     fetchData_borrowedBooks();
     return(
         <>
+          <Handle_User_Permission webpageRole = "customer">
             <Navbar pageType = "Current Books Borrowed" />
             <table className="table">
                 <thead>
@@ -84,6 +85,7 @@ function Customer_ViewBorrowedBooks(){
 
                 </tbody>
             </table>
+            </Handle_User_Permission>
         </>
     );
 }

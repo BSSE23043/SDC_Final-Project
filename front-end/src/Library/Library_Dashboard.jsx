@@ -20,6 +20,7 @@ function Library_Dashboard(){
     }
     return (
         <>
+            <Handle_User_Permission webpageRole = "staff">
             <Navbar pageType="Library Dashboard"/>
 
             <div style={{
@@ -69,6 +70,7 @@ function Library_Dashboard(){
             </div>
 
             </div>
+            </Handle_User_Permission>
         </>
     );
 }

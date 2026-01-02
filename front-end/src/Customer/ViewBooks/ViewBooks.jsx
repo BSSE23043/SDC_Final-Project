@@ -73,6 +73,7 @@ function Customer_ViewBooks(){
     loadBookCatalog();
     return(
         <>
+        <Handle_User_Permission webpageRole = "customer">
             <Navbar pageType = "Books Catalog"/>
             
             <table className="table table-striped-columns" id="customer_viewBooks_table">
@@ -89,6 +90,7 @@ function Customer_ViewBooks(){
         
                 </tbody>
             </table>
+            </Handle_User_Permission>
         </>
     );
 }

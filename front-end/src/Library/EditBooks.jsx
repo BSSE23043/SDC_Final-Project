@@ -13,6 +13,7 @@ function EditBook(){
 
     return(
     <>
+        <Handle_User_Permission webpageRole = "staff">
         <Navbar pageType="Edit Library Books"/>
 
         <div style={{
@@ -88,6 +89,7 @@ function EditBook(){
 
         </div>
         </div>
+        </Handle_User_Permission>
     </>
     );
 

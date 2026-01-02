@@ -67,8 +67,7 @@ function ViewBorrows(){
 
     return(
         <>
-            {/* <Handle_User_Permission webpageRole={"staff"}> */}
-
+            <Handle_User_Permission webpageRole = "staff">
             <Navbar pageType="View & Manage Book Borrows"/>
 
             <div className="component-hero"><img src="/images/book3.svg" className="page-hero-img" alt="View borrows"/></div>
@@ -113,8 +112,8 @@ function ViewBorrows(){
                 })}
                 </tbody>
             </table>
+            </Handle_User_Permission>
 
-        {/* </Handle_User_Permission> */}
         </>
     );
 }

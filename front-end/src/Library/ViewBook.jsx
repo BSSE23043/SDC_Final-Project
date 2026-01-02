@@ -49,6 +49,7 @@ function Staff_ViewBooks(){
     loadBookCatalog();
     return(
         <>
+        <Handle_User_Permission webpageRole = "staff">
             <Navbar pageType = "Books Catalog"/>
             
             <table className="table table-striped-columns" id="staff_viewBooks_table">
@@ -66,6 +67,7 @@ function Staff_ViewBooks(){
         
                 </tbody>
             </table>
+            </Handle_User_Permission>
         </>
     );
 }

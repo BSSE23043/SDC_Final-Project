@@ -8,6 +8,7 @@ function Customer_Dashboard(){
 
     return(
         <>
+            <Handle_User_Permission webpageRole = "customer">
             <Navbar pageType = "Customer Dashboard"/>
 
             <div className="customer-dashboard">
@@ -25,6 +26,7 @@ function Customer_Dashboard(){
                         <button id="div_1-button_1" type="button" className="btn homepage-btn" onClick={()=>{navigation("viewBorrowedBooks")}}>Go</button>
                 </div>
             </div>
+            </Handle_User_Permission>
         </>
     );
 }
