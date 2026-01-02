@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Navbar from "../Nav/Navbar";
-import "./ViewBooks.css";
+
 
 function loadBookCatalog(){
 
