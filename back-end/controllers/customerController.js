@@ -46,7 +46,7 @@ async function borrowBook(req, res){
         ,borrow_approved_by_staff, deadline_date) 
         VALUES($1, $2, $3, $4, $5, $6)`;
         await library_db.query(query, [bookISBN, null, req.session.user.email, "NO", "PENDING", null]);
-        await sendNotification(customer_email, "Book borrow request recorded", `Your request to borrow the book with ISBN: ${bookISBN} has been recorded successfully! You will be alerted about the further processing of your request!`);
+        await sendNotification(req.session.user.email, "Book borrow request recorded", `Your request to borrow the book with ISBN: ${bookISBN} has been recorded successfully! You will be alerted about the further processing of your request!`);
         res.write("success");
         res.end();
     }
