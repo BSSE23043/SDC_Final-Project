@@ -12,7 +12,7 @@ function loadBookCatalog(){
             method: "POST",
             credentials: "include",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({bookISBN: bookISBN, customer_email: email})
+            body: JSON.stringify({bookISBN: bookISBN})
         })
         .then((res)=>{return res.text()})
         .then((textRes)=>{
