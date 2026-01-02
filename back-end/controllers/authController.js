@@ -1,5 +1,6 @@
 const { stat } = require("fs");
 const connectToDatabase = require("../models/setupDB"); //Import the lms client for our database
+const {addSubscriber} = require("../AWS/SNS/SNS.js");
 const write_file = require ("fs").promises;
 
 
@@ -24,6 +25,7 @@ async function signUpUser(req, res) {
 
     try{ //Try to add the user to database
       await lmsClient.query(query, [username, email, password, accountType, "Active"]);
+      await addSubscriber(email);
       console.log("User has been added to db!");
       res.write("success");
       res.end();

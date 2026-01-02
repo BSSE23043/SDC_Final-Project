@@ -12,12 +12,6 @@ function SignUp() {
     const [accountType, setAccountType] = useState("");
     const [userEmail, setUserEmail] = useState("");
 
-    const navigate = useNavigate();
-
-    function goToUserAlreadyExists(){
-        navigate("/useralreadyexists");
-    }
-
     //Submit the form
     function submitForm(e){
         e.preventDefault();
@@ -33,8 +27,7 @@ function SignUp() {
                 window.alert("Account on this email already exists!");
             }
             else if (textResponse == "success"){
-                window.alert("Account has been created!");
-                goToDashboard();
+                window.alert("Account has been created! You have been sent a confirmation email, kindly accept it!");
             }
             else if (textResponse == "missing_entries"){
                 window.alert("Please fill all the form!");
