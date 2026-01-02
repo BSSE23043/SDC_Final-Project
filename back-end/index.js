@@ -9,26 +9,29 @@ const book = require("./routes/book.js");
 const app = express();
 const PORT = 5000;
 
-app.use(cors({origin: ["http://localhost:5173", "http://sdclb-108821170.us-east-1.elb.amazonaws.com"], credentials: true}));
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "http://sdclb-108821170.us-east-1.elb.amazonaws.com"
+  ],
+  credentials: true
+}));
+
 app.use(require("./session.js"));
-app.use(express.json());      // <-- parse JSON bodies
+app.use(express.json());
 
-
-// Serve frontend
-app.use(express.static(path.join(__dirname, "../front-end/dist")));
-
-app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../front-end/dist/index.html"));
-});
-
-//Routes
+//API ROUTES
 app.use("/auth", auth);
 app.use("/session", require("./routes/session"));
 app.use("/accounts", accounts);
 app.use("/book", book);
 
-app.get('/', (req, res) => {
-  res.send('Hello World from backend!');
+//Serve frontend
+app.use(express.static(path.join(__dirname, "../front-end/dist")));
+
+//React fallback
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../front-end/dist/index.html"));
 });
 
 app.listen(PORT, "0.0.0.0", async () => {
