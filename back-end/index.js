@@ -17,7 +17,7 @@ app.use(express.json());      // <-- parse JSON bodies
 // Serve frontend
 app.use(express.static(path.join(__dirname, "../front-end/dist")));
 
-app.get('*', (req, res) => {
+app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "../front-end/dist/index.html"));
 });
 
