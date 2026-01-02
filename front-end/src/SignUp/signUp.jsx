@@ -22,7 +22,7 @@ function SignUp() {
     function submitForm(e){
         e.preventDefault();
 
-        fetch("http://localhost:5000/auth/signup", {
+        fetch("http://98.92.174.150:5000/auth/signup", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({username : userName, password: userPass, email: userEmail, accountType: accountType})

@@ -10,7 +10,7 @@ function Website_Admin_View_Accounts(){
     function fetchAccountsFromDB(){ //This function will fetch the requests from the database, only those requests will be fetched which are marked as pending
     //..and then they will be displayed in the table
 
-        fetch("http://localhost:5000/accounts/fetchAccounts", {
+        fetch("http://98.92.174.150:5000/accounts/fetchAccounts", {
             method: "GET",
         })
         .then((res)=> {return res.json()})
@@ -20,7 +20,7 @@ function Website_Admin_View_Accounts(){
     }
 
     function terminateAccount(targetEmail){ //This function gets called when user clicks on terminate account
-        fetch("http://localhost:5000/accounts/terminateAccount", {
+        fetch("http://98.92.174.150:5000/accounts/terminateAccount", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({email: targetEmail})
@@ -38,7 +38,7 @@ function Website_Admin_View_Accounts(){
     }
 
     function restoreAccount(targetEmail){ //This function gets called when user clicks on Restore account
-        fetch("http://localhost:5000/accounts/restoreAccount", {
+        fetch("http://98.92.174.150:5000/accounts/restoreAccount", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({email: targetEmail})

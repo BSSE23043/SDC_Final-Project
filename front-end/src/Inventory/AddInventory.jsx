@@ -9,7 +9,7 @@ function AddInventory(){
     function submitForm(e){
         e.preventDefault();
     
-        fetch("http://localhost:5000/inventory/addInventoryItem", {
+        fetch("http://98.92.174.150:5000/inventory/addInventoryItem", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({itemName: itemName, itemQuantity: itemQuantity}),
