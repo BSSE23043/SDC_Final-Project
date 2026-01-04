@@ -33,7 +33,7 @@ function Customer_ViewBooks(){
     fetch("http://sdclb-108821170.us-east-1.elb.amazonaws.com/book/viewBookCatalog", {method: "GET"})
     .then((res)=>{return res.json()})
     .then((data)=>{
-        setBooks(data);
+        setBooks(data.rows);
     })
     }
     
