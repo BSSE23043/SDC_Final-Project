@@ -1,11 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../../Nav/Navbar";
 import "./ViewBooks.css";
 import Handle_User_Permission from "../../Shared_Functions/Sessions_Functions";
 
-function loadBookCatalog(){
-
-    function borrowBook(bookISBN){
+function borrowBook(bookISBN){
         console.log("Borrow book function called!");
         console.log(bookISBN);
 
@@ -25,53 +23,58 @@ function loadBookCatalog(){
         })
     }
 
+function Customer_ViewBooks(){
+    const [books, setBooks] = useState([]);
+    useEffect(()=>{loadBookCatalog();}, []);
+
+    function loadBookCatalog(){
+
     fetch("http://sdclb-108821170.us-east-1.elb.amazonaws.com/book/viewBookCatalog", {method: "GET"})
     .then((res)=>{return res.json()})
     .then((data)=>{
-        for(let i = 0; i< data.rows.length; i++){
-            const targetTableBody = document.getElementById("customer_viewBooks_tableBody");
+        setBooks(data);
+        // for(let i = 0; i< data.rows.length; i++){
+        //     const targetTableBody = document.getElementById("customer_viewBooks_tableBody");
 
-            const row = document.createElement("tr"); //Create row
+        //     const row = document.createElement("tr"); //Create row
 
-            //Row number
-            const rowNumber = document.createElement("th");
-            rowNumber.scope = "row";
-            rowNumber.textContent = i + 1;
+        //     //Row number
+        //     const rowNumber = document.createElement("th");
+        //     rowNumber.scope = "row";
+        //     rowNumber.textContent = i + 1;
 
-            //Title
-            const bookName = document.createElement("td");
-            bookName.textContent = data.rows[i]["book_name"];
+        //     //Title
+        //     const bookName = document.createElement("td");
+        //     bookName.textContent = data.rows[i]["book_name"];
 
-            //Author
-            const authorName = document.createElement("td");
-            authorName.textContent = data.rows[i]["author"];
+        //     //Author
+        //     const authorName = document.createElement("td");
+        //     authorName.textContent = data.rows[i]["author"];
 
-            //Available Quantity
-            const availableQuantity = document.createElement("td");
-            availableQuantity.textContent = data.rows[i]["quantity"];
+        //     //Available Quantity
+        //     const availableQuantity = document.createElement("td");
+        //     availableQuantity.textContent = data.rows[i]["quantity"];
 
-            //Borrow book button
-            const button_borrowBook = document.createElement("button");
-            button_borrowBook.className = "btn btn-success";
-            button_borrowBook.type = "button";
-            button_borrowBook.textContent = "Borrow Book";
-            button_borrowBook.onclick = (()=>{
-                borrowBook(data.rows[i]["isbn"]);
-            });
+        //     //Borrow book button
+        //     const button_borrowBook = document.createElement("button");
+        //     button_borrowBook.className = "btn btn-success";
+        //     button_borrowBook.type = "button";
+        //     button_borrowBook.textContent = "Borrow Book";
+        //     button_borrowBook.onclick = (()=>{
+        //         borrowBook(data.rows[i]["isbn"]);
+        //     });
             
-            //Compile the table
-            row.appendChild(rowNumber);
-            row.appendChild(bookName);
-            row.appendChild(authorName);
-            row.appendChild(availableQuantity);
-            row.appendChild(button_borrowBook);
-            targetTableBody.appendChild(row);
-        }
+        //     //Compile the table
+        //     row.appendChild(rowNumber);
+        //     row.appendChild(bookName);
+        //     row.appendChild(authorName);
+        //     row.appendChild(availableQuantity);
+        //     row.appendChild(button_borrowBook);
+        //     targetTableBody.appendChild(row);
+        // }
     })
-}
-
-function Customer_ViewBooks(){
-    loadBookCatalog();
+    }
+    
     return(
         <>
         <Handle_User_Permission webpageRole = "customer">
@@ -88,6 +91,17 @@ function Customer_ViewBooks(){
                     </tr>
                 </thead>
                 <tbody id="customer_viewBooks_tableBody">
+                    {books.map((book, index)=>{
+                        return(
+                            <tr>
+                            <th scope="row">{index + 1}</th>
+                            <td>{book.book_name}</td>
+                            <td>{book.author}</td>
+                            <td>{book.quantity}</td>
+                            <td><button className="btn btn-success" type="button" onClick={()=>{borrowBook(book.isbn)}}>{"Borrow"}</button></td>
+                            </tr>
+                        )
+                    })}
         
                 </tbody>
             </table>
