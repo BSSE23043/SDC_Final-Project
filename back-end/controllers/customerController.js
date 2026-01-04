@@ -7,7 +7,7 @@ async function viewBookCatalog(req, res){
         const library_db = await connectToDatabase();
         const query = `SELECT * FROM library`;
         const data = await library_db.query(query);
-        res.json(data);
+        res.json(data.rows);
     }
     catch(error){
         console.log(`customerController.js -> viewBookCatalog: ${error.message}`);
