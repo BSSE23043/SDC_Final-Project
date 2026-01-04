@@ -24,8 +24,9 @@ function borrowBook(bookISBN){
     }
 
 function Customer_ViewBooks(){
+    
+    useEffect(()=>{loadBookCatalog()}, []);
     const [books, setBooks] = useState([]);
-    useEffect(()=>{loadBookCatalog();}, []);
 
     function loadBookCatalog(){
 
@@ -33,45 +34,6 @@ function Customer_ViewBooks(){
     .then((res)=>{return res.json()})
     .then((data)=>{
         setBooks(data);
-        // for(let i = 0; i< data.rows.length; i++){
-        //     const targetTableBody = document.getElementById("customer_viewBooks_tableBody");
-
-        //     const row = document.createElement("tr"); //Create row
-
-        //     //Row number
-        //     const rowNumber = document.createElement("th");
-        //     rowNumber.scope = "row";
-        //     rowNumber.textContent = i + 1;
-
-        //     //Title
-        //     const bookName = document.createElement("td");
-        //     bookName.textContent = data.rows[i]["book_name"];
-
-        //     //Author
-        //     const authorName = document.createElement("td");
-        //     authorName.textContent = data.rows[i]["author"];
-
-        //     //Available Quantity
-        //     const availableQuantity = document.createElement("td");
-        //     availableQuantity.textContent = data.rows[i]["quantity"];
-
-        //     //Borrow book button
-        //     const button_borrowBook = document.createElement("button");
-        //     button_borrowBook.className = "btn btn-success";
-        //     button_borrowBook.type = "button";
-        //     button_borrowBook.textContent = "Borrow Book";
-        //     button_borrowBook.onclick = (()=>{
-        //         borrowBook(data.rows[i]["isbn"]);
-        //     });
-            
-        //     //Compile the table
-        //     row.appendChild(rowNumber);
-        //     row.appendChild(bookName);
-        //     row.appendChild(authorName);
-        //     row.appendChild(availableQuantity);
-        //     row.appendChild(button_borrowBook);
-        //     targetTableBody.appendChild(row);
-        // }
     })
     }
     
