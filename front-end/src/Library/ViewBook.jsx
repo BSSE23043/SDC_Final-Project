@@ -1,53 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../Nav/Navbar";
 import Handle_User_Permission from "../Shared_Functions/Sessions_Functions";
 
 
-function loadBookCatalog(){
+function Staff_ViewBooks(){
+    const [books, setBooks] = useState([]);
+    useEffect(()=>{loadBookCatalog()}, []);
 
-
+    function loadBookCatalog(){
     fetch("http://sdclb-108821170.us-east-1.elb.amazonaws.com/book/viewBookCatalog", {method: "GET"})
     .then((res)=>{return res.json()})
     .then((data)=>{
-        for(let i = 0; i< data.rows.length; i++){
-            const targetTableBody = document.getElementById("staff_viewBooks_tableBody");
-
-            const row = document.createElement("tr"); //Create row
-
-            //Row number
-            const rowNumber = document.createElement("th");
-            rowNumber.scope = "row";
-            rowNumber.textContent = i + 1;
-
-            //Title
-            const bookName = document.createElement("td");
-            bookName.textContent = data.rows[i]["book_name"];
-
-            //Author
-            const authorName = document.createElement("td");
-            authorName.textContent = data.rows[i]["author"];
-
-            //Available Quantity
-            const availableQuantity = document.createElement("td");
-            availableQuantity.textContent = data.rows[i]["quantity"];
-
-            //Book ISBN
-            const book_isbn = document.createElement("td");
-            book_isbn.textContent = data.rows[i]["isbn"];
-
-            //Compile the table
-            row.appendChild(rowNumber);
-            row.appendChild(book_isbn);
-            row.appendChild(bookName);
-            row.appendChild(authorName);
-            row.appendChild(availableQuantity);
-            targetTableBody.appendChild(row);
-        }
+       setBooks(data);
     })
-}
+    }
 
-function Staff_ViewBooks(){
-    loadBookCatalog();
     return(
         <>
         <Handle_User_Permission webpageRole = "staff">
@@ -65,7 +32,17 @@ function Staff_ViewBooks(){
                     </tr>
                 </thead>
                 <tbody id="staff_viewBooks_tableBody">
-        
+                    {books.map((book, index)=>{
+                        return(
+                            <tr>
+                                <th scope="row">{index + 1}</th>
+                                <td>{book.isbn}</td>
+                                <td>{book.book_name}</td>
+                                <td>{book.author}</td>
+                                <td>{book.quantity}</td>
+                            </tr>
+                        );
+                    })}
                 </tbody>
             </table>
             </Handle_User_Permission>
